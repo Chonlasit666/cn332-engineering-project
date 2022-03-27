@@ -7,4 +7,5 @@ React need package
 `npm install axios@0.21.1`
 
 to start project 
+`npm install react-scripts --save` for init react scripts
 `npm start` # at front directory
