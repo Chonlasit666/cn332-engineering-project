@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    'rest_google_auth',
+    
 #django rest framework
      'rest_framework',
      'rest_framework.authtoken',
