@@ -1,8 +1,8 @@
 import React from "react";
-import ListGroup from 'react-bootstrap/ListGroup';
+/* import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 import { Container, Row } from "react-bootstrap";
-import Col from 'react-bootstrap/Col';
+import Col from 'react-bootstrap/Col'; */
 import Image from 'react-bootstrap/Image'
 
 
