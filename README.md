@@ -26,6 +26,8 @@ then login as admin http://127.0.0.1:8000/admin/
 
 ![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/1.PNG)
 
+## add `localhost:8000`
+
 ![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/2.PNG)
 
 ## Add "Social applications"
