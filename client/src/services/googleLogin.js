@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleLogin from 'react-google-login';
-//import googleLogin from "./services/googleLogin"
 import axios from "axios";
+import './googleLogin.css';
 
 
 /**
@@ -36,7 +36,7 @@ export default class Login extends Component {
   
 
     return (
-      <div className="App">
+      <div className="Login">
         <h1>LOGIN WITH FACEBOOK AND GOOGLE</h1>
 
 
