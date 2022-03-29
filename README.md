@@ -91,11 +91,11 @@ npm install react-scripts --save
 
 then try `npm start`
 
-![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/r1.PNG)
+![image](/image/r1.PNG)
 
 # use with @dome.tu.ac.th only!
 
-![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/r2.PNG)
+![image](/image/r2.PNG)
 
 
 last go check http://localhost:8000/admin/ for "Social accounts"
