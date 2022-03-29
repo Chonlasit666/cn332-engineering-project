@@ -25,13 +25,7 @@ export default function AppNav() {
           <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
           <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item onClick={LoginPop}>
-            
-            
-            <button onClick={LoginPop}>
-                login i guess...
-            </button>
-          </NavDropdown.Item>
+          <NavDropdown.Item href='Login'>Login</NavDropdown.Item>
         </NavDropdown>
       </Nav>
       
