@@ -72,8 +72,7 @@ if you have same as follow image you good to go!
 install requirements package
 ```
 cd client
-npm i react-google-login
-npm i axios
+npm install
 
 ```
 Run this react!
@@ -87,11 +86,7 @@ if you get some problem with react-script
 
 ```
 npm install react-scripts --save
-npm install bootstrap --save
-npm install react-bootstrap --save
-npm install react-dom --save
-npm install react-router-dom --save
-npm install reactjs-popup --save
+
 ```
 
 then try `npm start`
