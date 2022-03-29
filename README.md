@@ -5,11 +5,21 @@
 `CN332project` Backend(Django) use restframework rest_auth and django-all-auth
 
 ## Step1 install requirements package and migrate model
+
+
 ```
 cd cn332project
 pip install -r requirements.txt
+```
+### change SITE_ID = 1 in cn332project/settings.py
+
+![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/siteid1.PNG)
+
+### migrate your data
+```
 python manage.py migrate
 ```
+
 ## Step2 createsuperuser 
 ```
 python manage.py createsuperuser
@@ -46,6 +56,10 @@ Client secret : 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
 ```
 
 ![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/4.PNG)
+
+### then back to change SITE_ID = 2 
+
+![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/siteid2.PNG)
 
 ## Go check rest_framework at http://127.0.0.1:8000/rest-auth/google/ 
 
