@@ -57,7 +57,7 @@ if you have same as follow image you good to go!
 
 install requirements package
 ```
-cd react_auth	
+cd client
 npm i react-google-login
 npm i axios
 
