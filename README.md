@@ -87,6 +87,11 @@ if you get some problem with react-script
 
 ```
 npm install react-scripts --save
+npm install bootstrap --save
+npm install react-bootstrap --save
+npm install react-dom --save
+npm install react-router-dom --save
+npm install reactjs-popup --save
 ```
 
 then try `npm start`
