@@ -32,6 +32,17 @@ then login as admin http://127.0.0.1:8000/admin/
 
 ![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/3.PNG)
 
+```
+name : django-google
+```
+```
+Client ID : 814359987215-0bhsf7s2msapugffv3klrcv2sjg03avi.apps.googleusercontent.com
+```
+```
+Client secret : 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
+
+```
+
 ![image](https://github.com/Chonlasit666/cn332-engineering-project/blob/main/image/4.PNG)
 
 ## Go check rest_framework at http://127.0.0.1:8000/rest-auth/google/ 
