@@ -19,11 +19,11 @@ ReactDOM.render(
     
     <BrowserRouter>
       <Routes>
-      <Route path="/Login" element={<Login />}></Route>
+        {/* <Route path="/Login" element={<Login />}></Route>
         <Route path="/Home" element={<Home />}></Route>
         <Route path="/Please" element={<Profile />}></Route>
         <Route path="/Myprojecct" element={<TaskManage />}></Route>
-        <Route path="/Dashboard" element={<Dashboard />}></Route>
+        <Route path="/Dashboard" element={<Dashboard />}></Route> */}
       </Routes>
     </BrowserRouter>
     
