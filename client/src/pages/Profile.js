@@ -1,27 +1,32 @@
 import React from "react";
-import { CardColumns, Container, Row } from "reactstrap";
+import { Col, Container, Row, Button } from "reactstrap";
 
 function Profile() {
     return (
+        <div>
+        <h1>this is Profile page</h1>
         <Container>
-            <div>
-                <col>
-                    <Row>h2</Row>
-                    <Row>h2</Row>
-                    <Row>h2</Row>
-                </col>
-                <col>
-                    <Row>h1</Row>
-                    <Row>h1</Row>
-                    <Row>h1</Row>
-                </col>
-                <col>
-                    <Row>
-                        
-                    </Row>
-                </col>
-            </div>
+            <Row className="row"> 
+                <Col className="column" md="6" >
+                Name:
+                <br></br>
+                Status:
+                </Col>
+                <Col className="column" >Variable width content</Col>
+            </Row>
+            <Row className="row">
+                <Col className="column" >Project Requirment</Col>
+                <Col className="column" >Detail:</Col>
+            </Row>
+            <Row className="row">
+                <Col className="column" xs lg="6">1 of 3</Col>
+            </Row>
         </Container>
+        <div>
+        <Button variant="secondary" className='button'>Edit</Button>{' '}
+        </div>
+        
+    </div>
     )
 }
 export default Profile;

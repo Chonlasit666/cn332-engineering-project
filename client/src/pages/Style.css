@@ -1,0 +1,14 @@
+
+  #container {
+    margin: auto;
+    justify-content: center;
+  
+    }
+
+
+  .column{
+    background-color: #d3d5da;
+    padding: 1rem;
+    border: 3px solid white;
+  
+  }
