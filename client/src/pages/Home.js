@@ -1,185 +1,155 @@
-import React from "react";
-/* import ListGroup from 'react-bootstrap/ListGroup';
-import Badge from 'react-bootstrap/Badge';
-import { Container, Row } from "react-bootstrap";
-import Col from 'react-bootstrap/Col'; */
-import Image from 'react-bootstrap/Image'
+
+
+import { Navbar, Nav, NavDropdown, Col, Row, Image, Button, Tabs, } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
+import { Box, Container, Grid } from '@mui/material';
 
 
 function Home() {
     return (
-        <div class="flex flex-column vh-100">
-            <div class="container">
+        <Container className="py-4" style={{ backgroundColor: '#ECECEC' }}>
+            <Row>
+                <Col className="col-12" md="8">
+                    <Row>
 
+                        <Col className="col-12 rounded" md="8" style={{ backgroundColor: '#FFFFFF' }}>
 
-
-                <div class="row" style={{
-                    backgroundColor: '#e1e1e1',
-
-                }}>
-                    <div class="col-8 ">
-
-                        <div class="col">
-
-                            <div class="row">
-                                <div class="col-8 mx-2 my-4 " style={{
-                                    backgroundColor: '#c9c9c9',
-
-                                }}>
-                                    <div class="row">
-                                        <div class="col ">
-                                            <div class="row">
-                                                <div class="col-auto  mt-3">
-                                                    <Image src="https://i.pinimg.com/originals/0e/6e/38/0e6e38c9d47b0c0fcd20dab395ba7a57.jpg" roundedCircle width="100px" height="100px" />
-                                                </div>
-                                                <div class="col mt-3 ">
-                                                    <div class="row h-50 " >
-                                                        <div class="col-auto">
-                                                            <p class="row  px-1">
-
-                                                                นางสาว
-                                                            </p>
-
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <p class="row  px-1">
-
-                                                                สุฑามาส
-                                                            </p>
-
-
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <p class="row px-1 ">
-
-                                                                เจริญด้วยเกียรติ
-                                                            </p>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="row h-50 h-auto">
-                                                        <div class="col-auto">
-                                                            <p class="row  px-1">
-                                                                นักศึกษา คณะวิศวกรรมไฟฟ้าและคอมพิวเตอร์
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col ">
-                                                Status : กำลังทำโครงงาน ชื่อโครงงาน
-                                            </div>
-                                            <div>
-                                                ที่ปรึกษาโครงงาน
-                                                อาจารย์ สมหญิง รักชาย
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col my-4 " style={{
-                                    backgroundColor: '#c9c9c9',
-
-                                }}>
-                                    <div class="row">
-                                        <p class="text-center">
-                                            ชื่อโครงงาน</p>
+                            <Row className="h-100">
+                                <Col className="text-center my-auto" md="4"  >
+                                    <div className="profile-img" style={{ width: "auto" }}>
+                                        <Image src={"https://play-lh.googleusercontent.com/kTkV3EWtNTDVCzRnUdbI5KdXm6Io-IM4Fb3mDcmX9-EOCEXJxnAxaph_leEn6m61E0I"} a00lt="Logo" />
 
                                     </div>
-                                    2
-                                </div>
-                            </div>
-                        </div>
+                                </Col>
+                                <Col className="col-12 my-auto text-center pt-2 " md="8" >
+                                    <h5>
+                                        AYAYA AYAYA
+                                        <span style={{ float: "right" }}>
 
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16" >
+                                                <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707z" />
+                                            </svg>
+                                        </span>
+                                    </h5>
+                                    {/* คณะ */}
+                                    <h6>
+                                        <span> วิศวกรรมคอมพิวเตอร์ </span>
+                                        <span> ปีที่ 3 </span>
+                                    </h6>
 
-                        <div class="col" >
-                            <div class="row my-2" >
-                                <div class="col " style={{
-                                    backgroundColor: '#c9c9c9',
+                                    <p>
+                                        <span> โครงงานที่ทำอยู่ :</span>
+                                        <span> Data science </span>
+                                    </p>
+                                    <p><span>ครูที่ปรึกษา: </span> <span>สมศักดิ์ ศักดินา</span></p>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col md="3" className="text-center m-md-auto rounded pt-2" style={{ backgroundColor: '#FFFFFF' }}>
+                            <h5 >
+                                ชื่อโครงงาน
 
-                                }}>
-                                    <div class="row mb-2">
-                                        <p class="text-center">
-                                            Schedule</p>
-                                        <Image src="https://marketplace.canva.com/EADajhkl4R8/1/0/1600w/canva-blue-simple-class-schedule-y62FO4jXJBk.jpg" rounded width="100px" height="200x" />
-                                    </div>
+                                <span style={{ float: "right" }}>
 
-                                </div>
-                                <div class="col mx-2 " style={{
-                                    backgroundColor: '#c9c9c9',
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16" >
+                                        <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707z" />
+                                    </svg>
+                                </span>
+                            </h5>
 
-                                }}>
-                                    <div class="row mb-2">
-                                        <p class="text-center">
-                                            Update Project </p>
-                                        <Image src="https://image.shutterstock.com/z/stock-vector-engineer-working-on-blueprint-engineering-drawing-technical-scheme-sketching-gear-project-1115446616.jpg" rounded width="100px" height="200x" />
-                                    </div>
-
-                                </div>
-                                <div class="col   " style={{
-                                    backgroundColor: '#c9c9c9',
-
-                                }}>
-                                    <div class="row ">
-                                        <p class="text-center">
-                                            Contacts </p>
-
-                                    </div>
-                                    <div class="row h-75">
-
-                                        <div class="row">
-                                            <div class="col-3 text-sm-center">
-                                                <Image src="https://mrkeenan.com/wp-content/uploads/2021/01/new_teacher.jpeg" roundedCircle width="50px" height="50px" />
-                                            </div>
-                                            <div class="col-auto">
-                                                <p class="row  px-1">
-                                                    อาจารย์ สมหญิง รักชาย
-                                                </p>
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3 text-sm-center">
-                                                <Image src="https://img2.storyblok.com/fit-in/1200x630/f/64062/800x450/374dd06094/world-teachers-day.jpg" roundedCircle width="50px" height="50px" />
-                                            </div>
-                                            <div class="col-auto">
-                                                <p class="row  px-1">
-                                                    อาจารย์ สมชาย รักหญิง
-                                                </p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                            <h6>
+                                หมายเหตุ : ถ้ายังไม่มีโครงงาน จะขึ้นมายังไม่มีโครงงานที่กำลังทำอยู่
+                            </h6>
 
 
 
-                    </div>
-                    <div class="col mx-2 mt-4 mb-2" style={{
-                        backgroundColor: '#c9c9c9',
-                    }}
-                    >
 
-                        <p class="text-center">
+                        </Col>
+                    </Row>
+                    <Row className="mt-4">
+
+                        <Col className="col-12" md="4">
+                            <Col className="col-12 rounded text-center" md="12" style={{ backgroundColor: '#FFFFFF' }}>
+                                <h5>
+                                    Schedule
+
+                                </h5>
+
+                                {/* Schedule */}
+                                <h6>
+                                    Schedule here
+                                    Schedule here  Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here
+                                    Schedule here  Schedule here  Schedule here  Schedule here  Schedule here  Schedule here  Schedule here
+                                </h6>
+                            </Col>
+                        </Col>
+                        <Col className="col-12" md="4" >
+                            <Col className="col-12 rounded text-center" md="12" style={{ backgroundColor: '#FFFFFF' }}>
+                                <h5>
+                                    Update Project
+                                </h5>
+                                {/* Update Project */}
+                                <h6>
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+                                    Project here
+
+                                    Project hereProject hereProject hereProject here
+
+                                </h6>
+                            </Col>
+                        </Col>
+                        <Col className="col-12  " md="4" >
+                            <Col className="col-12 rounded text-center" md="12" style={{ backgroundColor: '#FFFFFF' }}>
+                                <h5>
+                                    Contacts
+                                </h5>
+                                {/*Contacts */}
+                                <h6>
+
+                                    Contact here Contact here Contact here Contact here Contact here Contact here Contact here Contact here Contact here Contact here Contact here Contact here Contact here
+                                    Contact here Contact here Contact here Contact here
+                                </h6>
+                            </Col>
+
+                        </Col>
+
+                    </Row>
+                </Col>
+
+
+                <Col className="col-12 pt-2 " md="4" style={{ backgroundColor: '#FFFFFF' }}>
+                    <Col>
+                        <h6 className="text-center">
                             Dashboard
-                        </p>
+                        </h6>
+                    </Col>
+                </Col>
+            </Row >
+        </Container >
 
 
 
-                    </div>
 
 
-
-                </div>
-            </div>
-        </div >
-
-
-    )
+    );
 }
 export default Home;
