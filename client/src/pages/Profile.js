@@ -1,32 +1,22 @@
-import React from "react";
-import { Col, Container, Row, Button } from "reactstrap";
+
+
+import { Navbar, Container, Nav, NavDropdown, Col, Row, Image, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
+import Profile_Picture from "../components/profile/Profile_Picture";
+import Profile_Picture_Detail from "../components/profile/Profile_Picture_Detail";
+import Profile_Picture_Detail_Under from "../components/profile/Profile_Picture_Detail_Under";
 
 function Profile() {
     return (
-        <div>
-        <h1>this is Profile page</h1>
-        <Container>
-            <Row className="row"> 
-                <Col className="column" md="6" >
-                Name:
-                <br></br>
-                Status:
-                </Col>
-                <Col className="column" >Variable width content</Col>
+        <div className="container emp-profile">
+            <Row>
+                <Profile_Picture></Profile_Picture>
+
+                <Profile_Picture_Detail></Profile_Picture_Detail>
             </Row>
-            <Row className="row">
-                <Col className="column" >Project Requirment</Col>
-                <Col className="column" >Detail:</Col>
-            </Row>
-            <Row className="row">
-                <Col className="column" xs lg="6">1 of 3</Col>
-            </Row>
-        </Container>
-        <div>
-        <Button variant="secondary" className='button'>Edit</Button>{' '}
-        </div>
-        
-    </div>
-    )
+            <Profile_Picture_Detail_Under></Profile_Picture_Detail_Under>
+        </div >
+    );
 }
 export default Profile;

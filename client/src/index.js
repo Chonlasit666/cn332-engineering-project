@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
@@ -16,7 +16,7 @@ import Login from './services/googleLogin';
 ReactDOM.render(
   <React.StrictMode>
     <AppNav />
-    
+
     <BrowserRouter>
       <Routes>
         {/* <Route path="/Login" element={<Login />}></Route>
@@ -26,9 +26,9 @@ ReactDOM.render(
         <Route path="/Dashboard" element={<Dashboard />}></Route> */}
       </Routes>
     </BrowserRouter>
-    
-    
-    
+
+
+
   </React.StrictMode>,
   document.getElementById('root')
 );

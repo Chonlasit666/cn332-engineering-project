@@ -95,6 +95,7 @@ export default class AppNav extends Component {
             <Route path="/Myproject" element={<Myproject />} />
             <Route path="/Createproject" element={<Createproject />} />
             <Route path="/Projectdetail" element={<Projectdetail />} />
+           
           </Routes>
         </div>
       </Router>
