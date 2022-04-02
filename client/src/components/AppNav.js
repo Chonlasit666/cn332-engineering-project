@@ -8,8 +8,7 @@ import Createproject from '../pages/Createproject';
 import Projectdetail from '../pages/Projectdetail';
 import Profile from '../pages/Profile';
 import Login from '../services/googleLogin';
-import Test from '../pages/Test';
-import HomeTest from '../pages/HomeTest';
+
 
 /* export default function AppNav() {
     return (
@@ -96,8 +95,7 @@ export default class AppNav extends Component {
             <Route path="/Myproject" element={<Myproject />} />
             <Route path="/Createproject" element={<Createproject />} />
             <Route path="/Projectdetail" element={<Projectdetail />} />
-            <Route path="/Test" element={<Test />} />
-            <Route path="/HomeTest" element={<HomeTest />} />
+           
           </Routes>
         </div>
       </Router>
