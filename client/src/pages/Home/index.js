@@ -11,7 +11,7 @@ import { LOGIN_URL } from '../../config/urls';
 import { useUserRequired , useTestRequired } from '../../utils/hooks';
 import { UserContext  } from '../../components';
 
-import { logout, todo } from '../../pages/Home/sdk';
+import { logout, todo , updatetodo } from '../../pages/Home/sdk';
 import styles from './Home.module.css';
 import "../../App.css";
 
@@ -26,6 +26,11 @@ const Home = () => {
   const [inputs, setInputs] = useState({});
 
   const [check, setCheck] = useState(false);
+
+  const handleupdateTodo = useCallback(() => {
+    updatetodo();
+  }, [setUser, history]);
+
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -70,10 +75,14 @@ const Home = () => {
   }
 
   return (
+    
 
     <Container className="py-4" style={{ backgroundColor: '#ECECEC' }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <h1> Hello! {user.name} {x.obj1}</h1>
+        <button  onClick={handleupdateTodo}>
+        Test
+      </button>
         <button class="btn btn-primary me-md-2" type="button" onClick={handleLogout}>LOGOUT</button>
         <button class="btn btn-primary" type="button" onClick={handleTodo}>TEST!!</button>
         <button class="btn btn-primary" type="button" href="https://www.youtube.com/watch?v=4ebas1ZvyVI"> don't click this </button>
