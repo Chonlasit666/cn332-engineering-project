@@ -15,6 +15,11 @@ class UserMeApi(ApiAuthMixin, ApiErrorsMixin, APIView):
     def get(self, request, *args, **kwargs):
         return Response(user_get_me(user=request.user))
 
+class testGet(ApiAuthMixin, ApiErrorsMixin, APIView):
+    def get(self, request, *args, **kwargs):
+        return Response(test_get())
+
+
 class testPOST(ApiAuthMixin, ApiErrorsMixin, APIView):
     class InputSerializer(serializers.Serializer):
         title = serializers.CharField(required=False, default='')

@@ -7,4 +7,5 @@ const data = {
   };
 
 export const logout = () => post('auth/logout/', {});
-export const todo = () => post('users/test/', data )
+
+export const todo = (sample) => post('users/test/', sample )

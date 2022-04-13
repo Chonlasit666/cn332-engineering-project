@@ -9,6 +9,14 @@ def user_get_me(user: User):
         'email': user.email
     }
 
+def test_get():
+    return{
+        'obj1' : "a",
+        'obj2' : "b"
+
+    }
+
+
 def test_todo(todo : Todo):
     return {
         'title' : todo.title ,
