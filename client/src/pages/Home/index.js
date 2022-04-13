@@ -8,8 +8,8 @@ import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Box, Container, Grid } from '@mui/material';
 
 import { LOGIN_URL } from '../../config/urls';
-import { useUserRequired } from '../../utils/hooks';
-import { UserContext, Layout } from '../../components';
+import { useUserRequired , useTestRequired } from '../../utils/hooks';
+import { UserContext  } from '../../components';
 
 import { logout, todo } from '../../pages/Home/sdk';
 import styles from './Home.module.css';
@@ -17,6 +17,9 @@ import "../../App.css";
 
 const Home = () => {
   useUserRequired();
+  var x = useTestRequired();
+  console.log("----------");
+  console.log(x);
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 
@@ -70,7 +73,7 @@ const Home = () => {
 
     <Container className="py-4" style={{ backgroundColor: '#ECECEC' }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.name}</h1>
+        <h1> Hello! {user.name} {x.obj1}</h1>
         <button class="btn btn-primary me-md-2" type="button" onClick={handleLogout}>LOGOUT</button>
         <button class="btn btn-primary" type="button" onClick={handleTodo}>TEST!!</button>
         <button class="btn btn-primary" type="button" href="https://www.youtube.com/watch?v=4ebas1ZvyVI"> don't click this </button>
