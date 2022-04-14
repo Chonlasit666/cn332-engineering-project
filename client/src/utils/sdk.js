@@ -31,9 +31,8 @@ const serializeResponse = (response) => {
 
 export const getTest = (url, options) =>
   fetch(`${BASE_API_URL}/${url}`, { ...getBaseConfig("get"), ...options })
-    .then((res) => {
-      return res.json();
-    });
+    .then(serializeResponse)
+    .then(handle401);
 
 export const get = (url, options) =>
   fetch(`${BASE_API_URL}/${url}`, { ...getBaseConfig("get"), ...options })

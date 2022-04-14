@@ -8,5 +8,6 @@ urlpatterns = [
     path('init/', UserInitApi.as_view(), name='init'),
     path('test/', testPOST.as_view(), name='test'),
     path('testget/', testGet.as_view(), name='testget'),
+    path('update/', updateTodo.as_view(), name='testget'),
 
 ]

@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { post } from '../../utils/sdk';
+import { get, getTest } from "../../utils/sdk";
 
 import { Navbar, Nav, NavDropdown, Col, Row, Image, Button, Tabs, } from "react-bootstrap";
 //import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,7 +8,7 @@ import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { Box, Container, Grid } from '@mui/material';
 
 import { LOGIN_URL } from '../../config/urls';
-import { useUserRequired , useTestRequired } from '../../utils/hooks';
+import { useUserRequired  } from '../../utils/hooks';
 import { UserContext  } from '../../components';
 
 import { logout, todo , updatetodo } from '../../pages/Home/sdk';
@@ -17,9 +17,9 @@ import "../../App.css";
 
 const Home = () => {
   useUserRequired();
-  var x = useTestRequired();
-  console.log("----------");
-  console.log(x);
+
+  getTest("users/testget").then(j=> console.log(j));
+  
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 
@@ -40,12 +40,7 @@ const Home = () => {
     console.log("after change" + inputs.description)
   }
 
-  const shandleCheck = (e) => {
-    console.log("in handle check")
-    console.log(check)
-    const prev = e.target.value;
-    setCheck(!(prev));
-  }
+
   const handleCheck = () => {
     console.log(check)
     setCheck(!check)
@@ -79,7 +74,7 @@ const Home = () => {
 
     <Container className="py-4" style={{ backgroundColor: '#ECECEC' }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.name} {x.obj1}</h1>
+        <h1> Hello! {user.name}</h1>
         <button  onClick={handleupdateTodo}>
         Test
       </button>

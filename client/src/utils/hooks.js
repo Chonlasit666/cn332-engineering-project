@@ -7,17 +7,6 @@ const getMe = () => get("users/me");
 // how to create get method
 const getTestconsole = () => getTest("users/testget");
 
-export const useTestRequired = () => {
-  const [users ,  setusers] = useState();
-
-  useEffect(() => {
-    getTestconsole().then(data => setusers(data))
-
-  }, []);
-  return users;
-
-};
-
 export const useUserRequired = () => {
   const { user, setUser } = useContext(UserContext);
 

@@ -71,4 +71,14 @@ def post_todos(title : str ,  description : str , completed : bool ) :
     todo = Todo.objects.create(title=title , description = description , completed = completed)
 
     return todo
+
+@transaction.atomic
+def update_todos(id : int , title : str ,  description : str , completed : bool ) :
+    todo = Todo.objects.get(id=id)
+    todo.title = title 
+    todo.description = description
+    todo.completed = completed
+    todo.save()
+
+    return todo
     
