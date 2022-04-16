@@ -1,4 +1,4 @@
-from rest_framework import serializers , generics
+from rest_framework import serializers, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -6,14 +6,15 @@ from api.mixins import ApiErrorsMixin, ApiAuthMixin, PublicApiMixin
 
 from auth.services import jwt_login, google_validate_id_token
 
-from users.services import user_get_or_create , post_todos , update_todos
+from users.services import user_get_or_create, post_todos, update_todos
 from users.selectors import *
-from users.models import Profile , Todo
+from users.models import Profile, Todo
 
 
 class UserMeApi(ApiAuthMixin, ApiErrorsMixin, APIView):
     def get(self, request, *args, **kwargs):
         return Response(user_get_me(user=request.user))
+
 
 class testGet(ApiAuthMixin, ApiErrorsMixin, APIView):
     def get(self, request, *args, **kwargs):
@@ -25,7 +26,7 @@ class testPOST(ApiAuthMixin, ApiErrorsMixin, APIView):
         title = serializers.CharField(required=False, default='')
         description = serializers.CharField(required=False, default='')
         completed = serializers.BooleanField(required=False, default='')
-    
+
     def post(self, request, *args, **kwargs):
         serializer = self.InputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -37,13 +38,14 @@ class testPOST(ApiAuthMixin, ApiErrorsMixin, APIView):
 
         return response
 
+
 class updateTodo(ApiAuthMixin, ApiErrorsMixin, APIView):
     class InputSerializer(serializers.Serializer):
-        id =  serializers.IntegerField(required=False, default='')
+        id = serializers.IntegerField(required=False, default='')
         title = serializers.CharField(required=False, default='')
         description = serializers.CharField(required=False, default='')
         completed = serializers.BooleanField(required=False, default='')
-    
+
     def post(self, request, *args, **kwargs):
         serializer = self.InputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -55,7 +57,6 @@ class updateTodo(ApiAuthMixin, ApiErrorsMixin, APIView):
 
         return response
 
-        
 
 class UserInitApi(PublicApiMixin, ApiErrorsMixin, APIView):
     class InputSerializer(serializers.Serializer):

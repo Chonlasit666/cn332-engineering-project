@@ -1,5 +1,5 @@
 
-from users.models import User , Todo
+from users.models import User, Todo
 
 
 def user_get_me(user: User):
@@ -9,21 +9,23 @@ def user_get_me(user: User):
         'email': user.email
     }
 
+
 def test_get():
     return{
-        'obj1' : "a",
-        'obj2' : "b"
+        'obj1': "a",
+        'obj2': "b"
 
     }
 
 
-def test_todo(todo : Todo):
+def test_todo(todo: Todo):
     return {
-        'title' : todo.title ,
-        'description' : todo.description ,
-        'completed' : todo.completed
-        
+        'title': todo.title,
+        'description': todo.description,
+        'completed': todo.completed
+
     }
+
 
 def jwt_response_payload_handler(token, user=None, request=None):
     return {
