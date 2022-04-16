@@ -8,7 +8,7 @@ from api.mixins import ApiErrorsMixin, ApiAuthMixin, PublicApiMixin
 
 from auth.services import jwt_login, google_validate_id_token
 
-from users.services import user_get_or_create , post_todos , update_todos
+from users.services import user_get_or_create, post_todos, update_todos
 from users.selectors import *
 from users.models import Profile , Todo
 from users.serializer import *
@@ -26,7 +26,7 @@ class testPOST(ApiAuthMixin, ApiErrorsMixin, APIView):
         title = serializers.CharField(required=False, default='')
         description = serializers.CharField(required=False, default='')
         completed = serializers.BooleanField(required=False, default='')
-    
+
     def post(self, request, *args, **kwargs):
         serializer = self.InputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -41,11 +41,11 @@ class testPOST(ApiAuthMixin, ApiErrorsMixin, APIView):
 
 class updateTodo(ApiAuthMixin, ApiErrorsMixin, APIView):
     class InputSerializer(serializers.Serializer):
-        id =  serializers.IntegerField(required=False, default='')
+        id = serializers.IntegerField(required=False, default='')
         title = serializers.CharField(required=False, default='')
         description = serializers.CharField(required=False, default='')
         completed = serializers.BooleanField(required=False, default='')
-    
+
     def post(self, request, *args, **kwargs):
         serializer = self.InputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { AppNav, UserContext } from '../components';
-import Routes from './routes';
+import { AppNav, UserContext } from "../components";
+import Routes from "./routes";
 
 function App() {
   const [user, setUser] = useState(null);
