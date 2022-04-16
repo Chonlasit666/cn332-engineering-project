@@ -30,8 +30,6 @@ class UserAdmin(DjangoUserAdmin):
     search_fields = ('email', 'first_name', 'last_name')
 
 
-class projectAdmin(admin.ModelAdmin):
-    filter_horizontal = ('owner', 'adviser',)
 
 
 class TodoAdmin(admin.ModelAdmin):
@@ -39,5 +37,4 @@ class TodoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Todo, TodoAdmin)
-admin.site.register(Project, projectAdmin)
 admin.site.register(Profile)

@@ -41,16 +41,6 @@ class Profile(models.Model):
         return self.email.email
 
 
-class Project(models.Model):
-    name = models.CharField(max_length=200)
-    owner = models.ManyToManyField(Profile, related_name='own')
-    adviser = models.ManyToManyField(Profile, related_name='advice')
-    status = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Todo(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField()
