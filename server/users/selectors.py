@@ -1,14 +1,23 @@
 
-from users.models import User , Todo
+from users.models import User , Todo,Profile
 
 
 def user_get_me(user: User):
+    profile = Profile.objects.get(email=user.email)
     return {
         'id': user.email,
-        'name': user.name,
-        'email': user.email
+        'name': profile.first_name + profile.last_name,
+        'email': profile.email.email
     }
 
+"""
+def proflie_get_me(proflie: Profile):
+    return{
+        'name':proflie.first_name,
+        'email': proflie.email
+        
+    }
+"""
 def test_get():
     return{
         'obj1' : "a",

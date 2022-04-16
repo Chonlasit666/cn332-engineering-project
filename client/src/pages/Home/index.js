@@ -18,8 +18,16 @@ import "../../App.css";
 const Home = () => {
   useUserRequired();
 
+
   getTest("users/testget").then(j=> console.log(j));
   
+
+  /* ตรงนี้ตอนแก้แสดงผลproflie
+  var x = useTestRequired();
+  console.log("----------");
+  console.log(x);
+  */
+
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 
