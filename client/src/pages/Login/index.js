@@ -68,7 +68,6 @@ const Login = () => {
         onSuccess={onGoogleLoginSuccess}
         onFailure={({ details }) => notifyError(details)}
       />
-
     </Layout>
   );
 };
