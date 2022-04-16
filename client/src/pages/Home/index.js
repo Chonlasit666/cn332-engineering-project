@@ -17,9 +17,11 @@ import "../../App.css";
 
 const Home = () => {
   useUserRequired();
+  /*
   var x = useTestRequired();
   console.log("----------");
   console.log(x);
+  */
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 
@@ -79,7 +81,7 @@ const Home = () => {
 
     <Container className="py-4" style={{ backgroundColor: '#ECECEC' }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.name} {x.obj1}</h1>
+        <h1> Hello! {user.name}</h1>
         <button  onClick={handleupdateTodo}>
         Test
       </button>
