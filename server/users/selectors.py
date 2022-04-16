@@ -5,10 +5,12 @@ from users.models import User , Todo,Profile
 def user_get_me(user: User):
     profile = Profile.objects.get(email=user.email)
     return {
-        'id': user.email,
-        'name': profile.first_name + profile.last_name,
+        'id': user.email ,
+        'first_name': profile.first_name, 
+        'last_name': profile.last_name,
         'email': profile.email.email
     }
+
 
 """
 def proflie_get_me(proflie: Profile):

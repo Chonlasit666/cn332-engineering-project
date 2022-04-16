@@ -1,4 +1,4 @@
-import { post } from "../../utils/sdk";
+import { postUser, } from "../../utils/sdk";
 
 export const validateTokenAndObtainSession = ({ data, idToken }) => {
   const headers = {
@@ -6,5 +6,5 @@ export const validateTokenAndObtainSession = ({ data, idToken }) => {
     "Content-Type": "application/json",
   };
 
-  return post("users/init/", data, { headers });
+  return postUser("users/init/", data, { headers });
 };
