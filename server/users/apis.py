@@ -103,6 +103,7 @@ class testPUT(ApiAuthMixin, ApiErrorsMixin, APIView):
     def put(self, request, *args, **kwargs):
         #id = request.query_params["id"]
         profile = Profile.objects.get(email=request.user.email)
+        print(profile)
         
         data = request.data
 
