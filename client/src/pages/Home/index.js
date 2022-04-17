@@ -1,6 +1,6 @@
-import React, { useContext, useCallback, useState } from "react";
+import React, { useContext, useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { get, getTest } from "../../utils/sdk";
+import { getUser, getFeature } from "../../utils/sdk";
 
 import {
   Navbar,
@@ -18,18 +18,29 @@ import { Box, Container, Grid } from "@mui/material";
 
 import { LOGIN_URL } from "../../config/urls";
 import { useUserRequired } from "../../utils/hooks";
-import { UserContext } from "../../components";
+import { Schedule, UserContext } from "../../components";
 
 import { logout, todo, updatetodo } from "../../pages/Home/sdk";
 import styles from "./Home.module.css";
 import "../../App.css";
 
+
+
+const getProject = () => getUser("users/testget/");
+
+
 const Home = () => {
   useUserRequired();
 
-
-  getTest("users/testget").then(j=> console.log(j));
-  
+  const [sample, setSample] = useState([])
+  console.log("sample bF")
+  useEffect(()=> {
+    getProject().then((resp) => {
+      setSample(resp.data);
+      //console.log(resp.data);
+    });
+  },[]);
+  console.log( "this is obj1" + sample.obj1);
 
   /* ตรงนี้ตอนแก้แสดงผลproflie
   var x = useTestRequired();
@@ -40,8 +51,11 @@ const Home = () => {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
 
-  const [inputs, setInputs] = useState({});
+  
 
+
+  //todo form
+  const [inputs, setInputs] = useState({});
   const [check, setCheck] = useState(false);
 
   const handleupdateTodo = useCallback(() => {
@@ -83,10 +97,16 @@ const Home = () => {
     return null;
   }
 
+  console.log(user.id);
+
+
+
+  
+
   return (
     <Container className="py-4" style={{ backgroundColor: "#ECECEC" }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.name}</h1>
+        <h1> Hello! {user.first_name} this is obj1 {sample.obj1}</h1>
         <button onClick={handleupdateTodo}>Test</button>
         <button
           class="btn btn-primary me-md-2"
@@ -193,16 +213,9 @@ const Home = () => {
                 md="12"
                 style={{ backgroundColor: "#FFFFFF" }}
               >
-                <h5>Schedule</h5>
+                
+                <Schedule />
 
-                {/* Schedule */}
-                <h6>
-                  Schedule here Schedule here Schedule here Schedule here
-                  Schedule here Schedule here Schedule here Schedule here
-                  Schedule here Schedule here Schedule here Schedule here
-                  Schedule here Schedule here Schedule here Schedule here
-                  Schedule here Schedule here Schedule here
-                </h6>
               </Col>
             </Col>
             <Col className="col-12" md="4">

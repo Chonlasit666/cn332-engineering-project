@@ -1,14 +1,15 @@
-import { post } from "../../utils/sdk";
+import { postUser, postFeature, } from '../../utils/sdk';
 
 const data = {
-  id: 3,
-  title: "mos",
-  description: "labro",
-  completed: true,
-};
+    id : 3 ,
+    title: "mos",
+    description: "labro",
+    completed: true,
+  };
 
-export const logout = () => post("auth/logout/", {});
+export const logout = () => postUser('auth/logout/', {});
 
-export const todo = (sample) => post("users/test/", sample);
+export const todo = (sample) => postUser('users/test/', sample )
 
-export const updatetodo = () => post("users/update/", data);
+export const updatetodo = () => postUser('users/update/', data )
+ 
