@@ -7,4 +7,5 @@ class projectAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Post)
+admin.site.register(Comment)
 admin.site.register(Project, projectAdmin)
