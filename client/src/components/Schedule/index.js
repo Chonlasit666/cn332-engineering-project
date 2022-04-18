@@ -10,16 +10,8 @@ const Schedule = () => {
     const [value, onChange] = useState(new Date());
     return (
         <Container>
-        <Button>click me fuck u</Button>
-        {/* <h5>Schedule</h5>
-
-        <h6>
-            Schedule here Schedule here Schedule here Schedule here
-            Schedule here Schedule here Schedule here Schedule here
-            Schedule here Schedule here Schedule here Schedule here
-            Schedule here Schedule here Schedule here Schedule here
-            Schedule here Schedule here Schedule here
-        </h6> */}
+        
+        <h5>Schedule</h5>
         <Calendar  value={value} />
     </Container>
     )

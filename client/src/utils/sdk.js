@@ -5,7 +5,7 @@ import { notifyError } from "../utils/notifications";
 
 //export const BASE_API_URL = `${process.env.REACT_APP_BASE_BACKEND_URL}/api/v1`;
 export const BASE_USER_URL = `${process.env.REACT_APP_BASE_BACKEND_URL}/api/v1`;
-export const BASE_FEATURE_URL = `${process.env.REACT_APP_BASE_BACKEND_URL}/feature`;
+export const BASE_FEATURE_URL = `${process.env.REACT_APP_BASE_BACKEND_URL}/features`;
 
 const getBaseConfig = (method) => ({
   method,

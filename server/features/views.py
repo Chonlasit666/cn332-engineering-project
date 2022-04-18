@@ -1,11 +1,13 @@
 import email
 from django.shortcuts import render
 from requests import request
-from rest_framework import generics
-from features import serializers 
+from rest_framework import generics , serializers
+from features import serializer 
+from features.services import *
+from features.selectors import *
 from rest_framework import permissions
 from features.permission import IsOwnerOrReadOnly
-from api.mixins import ApiAuthMixin, ApiErrorsMixin
+from api.mixins import ApiAuthMixin , ApiErrorsMixin
 from rest_framework.views import APIView
 from users.models import *
 from users.selectors import *
@@ -14,47 +16,52 @@ from rest_framework.response import Response
 
 from .models import *
     
-class PostList(generics.ListCreateAPIView):
+class PostList(ApiAuthMixin,generics.ListCreateAPIView):
     queryset = Post.objects.all()
-    serializer_class = serializers.PostSerializer
+    serializer_class = serializer.PostSerializer
 
     def perform_create(self, serializer):
-        test = User.objects.get(email="jirat.suk@dome.tu.ac.th")
         print(self.request.user)
         serializer.save(owner=self.request.user)
 
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+class PostDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
-    serializer_class = serializers.PostSerializer
+    serializer_class = serializer.PostSerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                         #IsOwnerOrReadOnly]
 
+class getFormDetailFrontend(ApiAuthMixin, ApiErrorsMixin, APIView):
+    class InputSerializer(serializers.Serializer):
+        title = serializers.CharField(required=False, default='')
+        body = serializers.CharField(required=False, default='')
+    
+    def post(self, request, *args, **kwargs):
+        serializer = self.InputSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-class CommentList(generics.ListCreateAPIView):
+        owner = request.user
+        title = serializer.validated_data.get("title")
+        body = serializer.validated_data.get("body")
+        
+        post = create_post(owner , title , body)
+
+        response = Response(data=respone_post(post=post))
+    
+        return response
+
+
+class CommentList(ApiAuthMixin,generics.ListCreateAPIView):
     queryset = Comment.objects.all()
-    serializer_class = serializers.CommentSerializer
+    serializer_class = serializer.CommentSerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+class CommentDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
-    serializer_class = serializers.CommentSerializer
+    serializer_class = serializer.CommentSerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                          # IsOwnerOrReadOnly]
 
 
-class CategoryList(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = serializers.CategorySerializer
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = serializers.PostSerializer
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          #IsOwnerOrReadOnly]

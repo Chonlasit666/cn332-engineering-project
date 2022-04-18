@@ -12,6 +12,10 @@ class Post(models.Model):
     class Meta:
         ordering = ['created']
 
+    def __str__(self):
+        return self.title
+
+
 class Project(models.Model):
     name = models.CharField(max_length=200)
     owner = models.ManyToManyField(Profile, related_name='own')
@@ -32,10 +36,3 @@ class Comment(models.Model):
     class Meta:
         ordering = ['created']
 
-class Category(models.Model):
-    name = models.CharField(max_length=100, blank=False, default='')
-    owner = models.ForeignKey('users.User', related_name='categories', on_delete=models.CASCADE)
-    posts = models.ManyToManyField('Post', related_name='categories', blank=True)
-
-    class Meta:
-        verbose_name_plural = 'categories'
