@@ -24,6 +24,7 @@ const getPost = () => getFeature("posts/");
 
 const Dashboard = () => {
   const [samplePost, setSamplePost] = useState([])
+  const [inputs, setInputs] = useState({});
   useEffect(()=> {
     getPost().then((resp) => {
       setSamplePost(resp.data);
@@ -38,6 +39,25 @@ const Dashboard = () => {
     i++;
     
   } */
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    console.log(inputs.description);
+    setInputs((values) => ({ ...values, [name]: value }));
+    console.log("after change" + inputs.description);
+  };
+
+  const handleCreatePost = (event) => {
+    event.preventDefault();
+    const data = {
+      title: inputs.title,
+      description: inputs.description,
+      
+    };
+    console.log(inputs.description);
+    //todo(data);
+  };
   
   return (
     <Container className='justify-content-md-center'>
@@ -62,6 +82,31 @@ const Dashboard = () => {
          
      )}
     </ListGroup>
+    <form onSubmit={handleCreatePost}>
+        <label>
+          Title:
+          <input
+            type="text"
+            name="title"
+            value={inputs.title || ""}
+            onChange={handleChange}
+          />
+        </label>
+
+        <br></br>
+
+        <label>
+          Description:
+          <input
+            type="text"
+            name="body"
+            value={inputs.description || ""}
+            onChange={handleChange}
+          />
+        </label>
+
+        <input type="submit" />
+      </form>
     </Container>
     
   );
