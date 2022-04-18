@@ -27,7 +27,7 @@ import "../../App.css";
 
 
 const getProject = () => getUser("users/testget/");
-const getPost = () => getFeature("posts/1");
+
 
 
 const Home = () => {
@@ -43,16 +43,7 @@ const Home = () => {
   },[]);
   console.log( "this is obj1" + sample.obj1);
 
-  const [samplePost, setSamplePost] = useState([])
-  console.log("old post" + samplePost)
   
-  useEffect(()=> {
-    getPost().then((resp) => {
-      setSamplePost(resp.data);
-      //console.log(resp.data);
-    });
-  },[]);
-  console.log( "this is post" + samplePost.title);
 
   /* ตรงนี้ตอนแก้แสดงผลproflie
   var x = useTestRequired();

@@ -99,7 +99,7 @@ const Dashboard = () => {
           Description:
           <input
             type="text"
-            name="body"
+            name="description"
             value={inputs.description || ""}
             onChange={handleChange}
           />
