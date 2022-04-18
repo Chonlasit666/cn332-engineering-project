@@ -2,7 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import React, { useContext, useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { getFeature } from "../../utils/sdk";
+import { getFeature , postFeature} from "../../utils/sdk";
 
 import {
   Navbar,
@@ -21,6 +21,7 @@ import "../../App.css";
 
 
 const getPost = () => getFeature("posts/");
+const post_POST = (data) => postFeature("create_post/" , data);
 
 const Dashboard = () => {
   const [samplePost, setSamplePost] = useState([])
@@ -52,11 +53,11 @@ const Dashboard = () => {
     event.preventDefault();
     const data = {
       title: inputs.title,
-      description: inputs.description,
+      body: inputs.description,
       
     };
     console.log(inputs.description);
-    //todo(data);
+    post_POST(data);
   };
   
   return (
@@ -99,7 +100,7 @@ const Dashboard = () => {
           Description:
           <input
             type="text"
-            name="body"
+            name="description"
             value={inputs.description || ""}
             onChange={handleChange}
           />
