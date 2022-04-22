@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { getUser, getFeature } from "../../utils/sdk";
+import { getUser, getFeature, postUser } from "../../utils/sdk";
 
 import {
   Navbar,
@@ -27,6 +27,17 @@ import "../../App.css";
 
 
 const getProject = () => getUser("users/testget/");
+const updateProfile = (sample) => postUser("users/updateProfile/", sample);
+
+const profileData = {
+  first_name: "adadad",
+  last_name: "last",
+  email: "temp@email.com",
+  /* avatar: '',
+  status: 'Student',
+  faculty: '', */
+};
+
 
 
 
@@ -35,15 +46,13 @@ const Home = () => {
 
   const [sample, setSample] = useState([])
   console.log("sample bF")
-  useEffect(()=> {
+  useEffect(() => {
     getProject().then((resp) => {
       setSample(resp.data);
       //console.log(resp.data);
     });
-  },[]);
-  console.log( "this is obj1" + sample.obj1);
-
-  
+  }, []);
+  console.log("this is obj1" + sample.obj1);
 
   /* ตรงนี้ตอนแก้แสดงผลproflie
   var x = useTestRequired();
@@ -53,9 +62,6 @@ const Home = () => {
 
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
-
-  
-
 
   //todo form
   const [inputs, setInputs] = useState({});
@@ -96,22 +102,23 @@ const Home = () => {
     });
   }, [setUser, history]);
 
+  const handleupdateProfile = useCallback(() => {
+    console.log(profileData)
+    updateProfile(profileData)
+  }, []);
+
   if (!user) {
     return (
-      <h1>hello</h1>
+      <h1>Loading UWU...</h1>
     );
   }
 
-  //console.log(user.id);
-
-
-
-  
+  //console.log(user);
 
   return (
     <Container className="py-4" style={{ backgroundColor: "#ECECEC" }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.first_name} </h1>
+        <h1> Hello! {user.first_name} {user.avatar}</h1>
         <button onClick={handleupdateTodo}>Test</button>
         <button
           class="btn btn-primary me-md-2"
@@ -126,7 +133,7 @@ const Home = () => {
         <button
           class="btn btn-primary"
           type="button"
-          href="https://www.youtube.com/watch?v=4ebas1ZvyVI"
+          onClick={handleupdateProfile}
         >
           {" "}
           don't click this{" "}
@@ -153,7 +160,7 @@ const Home = () => {
                   </div>
                 </Col>
                 <Col className="col-12 my-auto text-center pt-2 " md="8">
-                  <MiniProfile profile={user}/>
+                  <MiniProfile profile={user} />
                 </Col>
               </Row>
             </Col>
@@ -191,7 +198,7 @@ const Home = () => {
                 md="12"
                 style={{ backgroundColor: "#FFFFFF" }}
               >
-                
+
                 <Schedule />
 
               </Col>

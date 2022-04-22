@@ -1,4 +1,5 @@
 import email
+from logging.handlers import SYSLOG_UDP_PORT
 from django.shortcuts import render
 from requests import request
 from rest_framework import generics , serializers
@@ -37,6 +38,8 @@ class getFormDetailFrontend(ApiAuthMixin, ApiErrorsMixin, APIView):
     
     def post(self, request, *args, **kwargs):
         serializer = self.InputSerializer(data=request.data)
+        print("this is data")
+        print(request.data)
         serializer.is_valid(raise_exception=True)
 
         owner = request.user
