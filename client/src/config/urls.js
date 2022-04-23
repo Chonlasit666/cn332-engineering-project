@@ -4,3 +4,4 @@ export const Ayaya_URL = "/ayaya";
 export const Createproject_URL = "/Createproject";
 export const Dashboard_URL = "/Dashboard";
 export const Project_URL = "/Project";
+export const GoogleCalendar_URL = "/Calen";

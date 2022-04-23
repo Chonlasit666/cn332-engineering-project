@@ -8,7 +8,7 @@ from api.mixins import ApiErrorsMixin, ApiAuthMixin, PublicApiMixin
 
 from auth.services import jwt_login, google_validate_id_token
 
-from users.services import user_get_or_create, post_todos, update_todos
+from users.services import update_profile, user_get_or_create, post_todos, update_todos
 from users.selectors import *
 from users.models import Profile , Todo
 from users.serializer import *
@@ -118,7 +118,28 @@ class testPUT(ApiAuthMixin, ApiErrorsMixin, APIView):
         serializer = ProflieSerializer(profile)
         return Response(serializer.data)
 
+class updateProfile(ApiAuthMixin, ApiErrorsMixin, APIView):
+    class InputSerializer(serializers.Serializer):
+        first_name = serializers.CharField(required=False, default='')
+        last_name = serializers.CharField(required=False, default='')
+        email = serializers.CharField(required=False, default='')
+        """ avatar = serializers.CharField(required=False, default='')
+        status = serializers.CharField(required=False, default='')
+        faculty = serializers.CharField(required=False, default='') """
 
+    def post(self, request, *args, **kwargs):
+        
+        serializer = self.InputSerializer(data=request.data)
+        
+        serializer.is_valid(raise_exception=True)
+        
+
+        # update profile
+        profile = update_profile(**serializer.validated_data)
+
+        response = Response(data=profile_get_me(profile=profile))
+        
+        return response
 """
 class UserMeApi(ApiAuthMixin, ApiErrorsMixin, APIView):
     def get(self, request, *args, **kwargs):
