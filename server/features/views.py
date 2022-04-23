@@ -43,4 +43,12 @@ class CommentDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                          # IsOwnerOrReadOnly]
 
+class DeletePost(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = serializers.PostSerializer
+    
+    def perform_create(self, serializer):
+        print(self.request.user)
+        serializer.delete(owner=self.request.user)
+
 
