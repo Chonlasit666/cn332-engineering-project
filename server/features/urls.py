@@ -14,5 +14,5 @@ urlpatterns = [
     path('posts/<int:pk>/', views.PostDetail.as_view()),
     path('comments/', views.CommentList.as_view()),
     path('comments/<int:pk>/', views.CommentDetail.as_view()),
-    path('posts/<int:pk>/del',views.DeletePost.as_view()),
+    path('create_post/', views.getFormDetailFrontend.as_view()),
 ]

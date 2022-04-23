@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { getUser, getFeature } from "../../utils/sdk";
+import { getUser, getFeature, postUser } from "../../utils/sdk";
 
 import {
   Navbar,
@@ -18,7 +18,7 @@ import { Box, Container, Grid } from "@mui/material";
 
 import { LOGIN_URL } from "../../config/urls";
 import { useUserRequired } from "../../utils/hooks";
-import { Schedule, UserContext } from "../../components";
+import { MiniProfile, Schedule, UserContext } from "../../components";
 
 import { logout, todo, updatetodo } from "../../pages/Home/sdk";
 import styles from "./Home.module.css";
@@ -27,6 +27,18 @@ import "../../App.css";
 
 
 const getProject = () => getUser("users/testget/");
+const updateProfile = (sample) => postUser("users/updateProfile/", sample);
+
+const profileData = {
+  first_name: "adadad",
+  last_name: "last",
+  email: "temp@email.com",
+  /* avatar: '',
+  status: 'Student',
+  faculty: '', */
+};
+
+
 
 
 const Home = () => {
@@ -34,13 +46,13 @@ const Home = () => {
 
   const [sample, setSample] = useState([])
   console.log("sample bF")
-  useEffect(()=> {
+  useEffect(() => {
     getProject().then((resp) => {
       setSample(resp.data);
       //console.log(resp.data);
     });
-  },[]);
-  console.log( "this is obj1" + sample.obj1);
+  }, []);
+  console.log("this is obj1" + sample.obj1);
 
   /* ตรงนี้ตอนแก้แสดงผลproflie
   var x = useTestRequired();
@@ -50,9 +62,6 @@ const Home = () => {
 
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
-
-  
-
 
   //todo form
   const [inputs, setInputs] = useState({});
@@ -93,20 +102,23 @@ const Home = () => {
     });
   }, [setUser, history]);
 
+  const handleupdateProfile = useCallback(() => {
+    console.log(profileData)
+    updateProfile(profileData)
+  }, []);
+
   if (!user) {
-    return null;
+    return (
+      <h1>Loading UWU...</h1>
+    );
   }
 
-  console.log(user.id);
-
-
-
-  
+  //console.log(user);
 
   return (
     <Container className="py-4" style={{ backgroundColor: "#ECECEC" }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.first_name} this is obj1 {sample.obj1}</h1>
+        <h1> Hello! {user.first_name} {user.avatar}</h1>
         <button onClick={handleupdateTodo}>Test</button>
         <button
           class="btn btn-primary me-md-2"
@@ -121,7 +133,7 @@ const Home = () => {
         <button
           class="btn btn-primary"
           type="button"
-          href="https://www.youtube.com/watch?v=4ebas1ZvyVI"
+          onClick={handleupdateProfile}
         >
           {" "}
           don't click this{" "}
@@ -148,34 +160,7 @@ const Home = () => {
                   </div>
                 </Col>
                 <Col className="col-12 my-auto text-center pt-2 " md="8">
-                  <h5>
-                    AYAYA AYAYA
-                    <span style={{ float: "right" }}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        class="bi bi-arrow-up-right-square-fill"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707z" />
-                      </svg>
-                    </span>
-                  </h5>
-                  {/* คณะ */}
-                  <h6>
-                    <span> วิศวกรรมคอมพิวเตอร์ </span>
-                    <span> ปีที่ 3 </span>
-                  </h6>
-
-                  <p>
-                    <span> โครงงานที่ทำอยู่ :</span>
-                    <span> Data science </span>
-                  </p>
-                  <p>
-                    <span>ครูที่ปรึกษา: </span> <span>สมศักดิ์ ศักดินา</span>
-                  </p>
+                  <MiniProfile profile={user} />
                 </Col>
               </Row>
             </Col>
@@ -213,7 +198,7 @@ const Home = () => {
                 md="12"
                 style={{ backgroundColor: "#FFFFFF" }}
               >
-                
+
                 <Schedule />
 
               </Col>

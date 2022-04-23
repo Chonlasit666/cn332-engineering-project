@@ -12,6 +12,10 @@ class Post(models.Model):
     class Meta:
         ordering = ['created']
 
+    def __str__(self):
+        return self.title
+
+
 class Project(models.Model):
     name = models.CharField(max_length=200)
     owner = models.ManyToManyField(Profile, related_name='own')

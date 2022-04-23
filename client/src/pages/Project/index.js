@@ -23,10 +23,11 @@ const Project = () => {
                 <Row className="row">
                     <Col className="column" xs lg="6">1 of 3</Col>
                 </Row>
+                <div>
+                    <Button variant="secondary" className='button'>Edit</Button>{' '}
+                </div>
             </Container>
-            <div>
-                <Button variant="secondary" className='button'>Edit</Button>{' '}
-            </div>
+
 
         </div>
     )
