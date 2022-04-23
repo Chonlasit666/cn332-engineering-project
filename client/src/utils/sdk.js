@@ -64,3 +64,11 @@ export const postFeature = (url, data, options) =>
     .then(serializeResponse)
     .then(handle401);
 
+export const putUser = (url, data, options) =>
+  fetch(`${BASE_USER_URL}/${url}`, {
+    ...getBaseConfig("put"),
+    ...options,
+    body: JSON.stringify(data),
+  })
+    .then(serializeResponse)
+    .then(handle401);
