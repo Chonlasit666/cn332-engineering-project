@@ -5,7 +5,7 @@ from django.core.management.utils import get_random_secret_key
 
 from utils import get_now
 
-from users.models import User, Todo
+from users.models import User, Todo, Profile
 
 
 def user_create(email, password=None, **extra_fields) -> User:
@@ -83,3 +83,20 @@ def update_todos(id: int, title: str,  description: str, completed: bool):
     todo.save()
 
     return todo
+
+@transaction.atomic
+def update_profile(first_name: str, last_name: str, email: str):
+    
+    
+    profile = Profile.objects.get(email=email)
+    
+    profile.first_name = first_name
+    profile.last_name = last_name
+    """ profile.email = email
+    profile.avatar = avatar
+    profile.faculty = faculty """
+
+    profile.save()
+
+    print("edit profile success")
+    return profile
