@@ -1,4 +1,3 @@
-import email
 from logging.handlers import SYSLOG_UDP_PORT
 from django.shortcuts import render
 from requests import request
@@ -28,8 +27,14 @@ class PostList(ApiAuthMixin,generics.ListCreateAPIView):
 class PostDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = serializer.PostSerializer
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                        #IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+    
+    def perform_delete(self, serializer):
+        if(serializer.owner == self.request.user):
+            serializer.delete()
+    
+    
 
 class getFormDetailFrontend(ApiAuthMixin, ApiErrorsMixin, APIView):
     class InputSerializer(serializers.Serializer):
@@ -64,15 +69,11 @@ class CommentList(ApiAuthMixin,generics.ListCreateAPIView):
 class CommentDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = serializer.CommentSerializer
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                         # IsOwnerOrReadOnly]
-
-class DeletePost(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = serializers.PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
     
-    def perform_create(self, serializer):
-        print(self.request.user)
-        serializer.delete(owner=self.request.user)
+    def perform_delete(self, serializer):
+        if(serializer.owner == self.request.user):
+            serializer.delete()
 
 
