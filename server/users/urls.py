@@ -10,6 +10,5 @@ urlpatterns = [
     path('testget/', testGet.as_view(), name='testget'),
     path('update/', updateTodo.as_view(), name='testget'),
     path('testPUT/', testPUT.as_view(), name='testPUT'),
-    path('updateProfile/', updateProfile.as_view(), name='updateProfile'),
     
 ]

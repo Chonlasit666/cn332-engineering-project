@@ -118,7 +118,7 @@ const Home = () => {
   return (
     <Container className="py-4" style={{ backgroundColor: "#ECECEC" }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.first_name} {user.avatar}</h1>
+        <h1> Hello! {user.first_name}</h1>
         <button onClick={handleupdateTodo}>Test</button>
         <button
           class="btn btn-primary me-md-2"
@@ -151,12 +151,7 @@ const Home = () => {
               <Row className="h-100">
                 <Col className="text-center my-auto" md="4">
                   <div className="profile-img" style={{ width: "auto" }}>
-                    <Image
-                      src={
-                        "https://play-lh.googleusercontent.com/kTkV3EWtNTDVCzRnUdbI5KdXm6Io-IM4Fb3mDcmX9-EOCEXJxnAxaph_leEn6m61E0I"
-                      }
-                      a00lt="Logo"
-                    />
+                  <Image src={user.avatar} a00lt="Logo" />
                   </div>
                 </Col>
                 <Col className="col-12 my-auto text-center pt-2 " md="8">
