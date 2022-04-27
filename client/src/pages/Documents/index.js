@@ -70,9 +70,9 @@ const Documents = () => {
               <label>{project.owner}</label><br></br>
               <label>this is id {project.id}</label><br></br>
               <label>this is status {project.status}</label><br></br>
-              <label>this is owneer {project.owner}</label><br></br>
+              <label>this is owneer id{project.owner}</label><br></br>
               <label>this is adviser {project.adviser}</label><br></br>
-              <label>this is Faculty {project.faculty}</label><br></br>
+              <label>this is Facility {project.Facility}</label><br></br>
               <label>this is file {project.File_url}</label><br></br>
               <label>this is detail {project.Detail}</label><br></br>
 
@@ -80,8 +80,6 @@ const Documents = () => {
 
           </ListGroup.Item>
         )
-
-
         )}
       </ListGroup>
 
