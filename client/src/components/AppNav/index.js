@@ -29,11 +29,11 @@ const AppNav = () => {
     });
   }, [setUser, history]);
 
-  console.log("!user")
+  /* console.log("!user")
   console.log(!user)
 
   console.log("user")
-  console.log(user)
+  console.log(user) */
 
   return (<Navbar bg="light" expand="lg">
     <Container className='justify-content-md-center'>
@@ -69,14 +69,14 @@ const AppNav = () => {
           <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
           <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
           <NavDropdown.Divider />
-          
+
         </NavDropdown>
         <div>
-            {!user
-              ? <NavDropdown.Item href={LOGIN_URL}>Login</NavDropdown.Item>
-              : <NavDropdown.Item onClick={handleLogout}>logout</NavDropdown.Item>}
-          </div>
-       
+          {!user
+            ? <NavDropdown.Item href={LOGIN_URL}>Login</NavDropdown.Item>
+            : <NavDropdown.Item onClick={handleLogout}>logout</NavDropdown.Item>}
+        </div>
+
       </Navbar.Collapse>
     </Container>
   </Navbar>)

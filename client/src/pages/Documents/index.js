@@ -22,7 +22,7 @@ import "../../App.css";
 
 
 
-const getProjects = () => getFeature("projects/");
+const getProjects = () => getFeature("create_project/");
 
 
 const Documents = () => {
@@ -55,7 +55,7 @@ const Documents = () => {
     <Container className='justify-content-md-center'>
       this is doc
       <ListGroup as="ol" numbered>
-        {samplePost.map((post, index) => (
+        {samplePost.map((project, index) => (
 
           <ListGroup.Item
             as="li"
@@ -63,10 +63,18 @@ const Documents = () => {
             key={index}
           >
             <div className="ms-2 me-auto">
-              <div className="fw-bold">{post.title}</div>
-              <label>{post.body}</label><br></br>
-              <label>{post.owner}</label><br></br>
-              <label>this is id {post.id}</label>
+            {/* 'id','title','status','owner','adviser','Facility','File_url','Detail' */}
+              <div className="fw-bold">{project.title}</div>
+              
+              <label>{project.body}</label><br></br>
+              <label>{project.owner}</label><br></br>
+              <label>this is id {project.id}</label><br></br>
+              <label>this is status {project.status}</label><br></br>
+              <label>this is owneer {project.owner}</label><br></br>
+              <label>this is adviser {project.adviser}</label><br></br>
+              <label>this is Faculty {project.faculty}</label><br></br>
+              <label>this is file {project.File_url}</label><br></br>
+              <label>this is detail {project.Detail}</label><br></br>
 
             </div>
 
