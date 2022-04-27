@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { postFeature } from "../../utils/sdk";
+import { getUser } from "../../utils/sdk";
 
 const create_project = (data) => postFeature('create_project/', data)
+const get_profile = () => getUser('users/me/');
 
 const Createproject = () => {
 
   const [formData, setFormData] = useState({});
+  const [prof, setProf] = useState([]);
+
+
+  useEffect(() => {
+    console.log("call useEff")
+    get_profile().then((resp) => {
+      setProf(resp.data);
+
+    });
+  }, []);
 
   const handleChange = (event) => {
     console.log(formData)
@@ -19,8 +31,8 @@ const Createproject = () => {
     event.preventDefault();
     const data = {
       title: formData.title,
-      owner: formData.owner,
-      adviser: formData.adviser,
+      owner: [prof.pk],
+      adviser: [formData.adviser],
       status: formData.status,
       Facility: formData.Facility,
       File_url: formData.File_url,
@@ -46,6 +58,7 @@ const Createproject = () => {
     <div>
       <br />
       <Container>
+        {prof.pk}
         {/* <Form onSubmit={handleSubmit}>
           <Row className="row">
             <Col className="column" md="3">
@@ -98,7 +111,7 @@ const Createproject = () => {
           </Button>
         </Form> */}
         <form onSubmit={handleSubmit}>
-          <label>Event Name:
+          <label>title:
             <input
               type="text"
               name="title"
@@ -109,7 +122,7 @@ const Createproject = () => {
 
           <br></br>
 
-          <label>Location:
+          <label>status:
             <input
               type="text"
               name="status"

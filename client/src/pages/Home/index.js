@@ -26,14 +26,6 @@ import "../../App.css";
 import Dashboard from "../Dashboard";
 
 
-
-const getProject = () => getUser("users/testget/");
-const updateProfile = (sample) => postUser("users/updateProfile/", sample);
-
-
-
-
-
 const Home = () => {
   useUserRequired();
 
