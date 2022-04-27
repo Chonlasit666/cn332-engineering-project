@@ -9,4 +9,6 @@ class showdateAdmin(admin.ModelAdmin):
 
 admin.site.register(Post,showdateAdmin)
 admin.site.register(Comment,showdateAdmin)
+admin.site.register(Progressions)
+admin.site.register(Review)
 admin.site.register(Project, projectAdmin)
