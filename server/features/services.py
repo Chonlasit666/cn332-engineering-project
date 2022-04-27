@@ -9,3 +9,4 @@ def create_post(owner,title,body):
     post = Post.objects.create(title=title, body=body, owner=owner)
 
     return post
+

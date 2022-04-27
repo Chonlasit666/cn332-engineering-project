@@ -8,8 +8,10 @@ def user_get_me(user: User):
         'id': user.email ,
         'first_name': profile.first_name, 
         'last_name': profile.last_name,
+        'status': profile.status,
         'email': profile.email.email,
-        'avatar': profile.avatar
+        'avatar': profile.avatar, 
+        'faculty': profile.faculty
     }
 
 def profile_get_me(profile: Profile):

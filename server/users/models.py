@@ -24,6 +24,7 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
+    DEAFAULTPIC="https://firebasestorage.googleapis.com/v0/b/top-cubist-344010.appspot.com/o/files%2Ficon-students-3.jpg?alt=media&token=69e9185d-846d-429b-a078-e21c51cc21ae%22"
     status_choices = (
         ('S', 'Student'),
         ('P', 'Professor')
@@ -32,7 +33,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=200, null=True, blank=True)
     email = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
     # avatar = models.ImageField(upload_to='profile', blank = True) this
-    avatar = models.CharField(max_length=200, null=True, blank=True)
+    avatar = models.CharField(max_length=200, null=True, blank=True, default=DEAFAULTPIC)
     status = models.CharField(
         max_length=9, choices=status_choices)  # Student / Professor
     faculty = models.CharField(max_length=200, blank=True, null=False)
