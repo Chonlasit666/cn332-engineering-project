@@ -16,7 +16,7 @@ from rest_framework.response import Response
 
 from .models import *
     
-class PostList(ApiAuthMixin,generics.ListCreateAPIView):
+class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = serializer.PostSerializer
 

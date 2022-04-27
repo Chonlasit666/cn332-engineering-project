@@ -4,10 +4,10 @@ from rest_framework import serializers
 class PostSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.email')
     comments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-
+    created = serializers.DateTimeField(required=False, read_only=True)
     class Meta:
         model = Post
-        fields = ['id', 'title', 'body', 'owner', 'comments']
+        fields = ['id', 'title', 'body', 'owner', 'comments','created']
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -15,4 +15,4 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['id', 'body', 'owner', 'post']
+        fields = ['id', 'body', 'owner', 'post','created']
