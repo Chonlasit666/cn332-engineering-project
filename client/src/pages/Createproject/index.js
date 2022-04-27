@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
+import { postFeature } from "../../utils/sdk";
+
+const create_project = (data) => postFeature('create_project/', data)
 
 const Createproject = () => {
 
   const [formData, setFormData] = useState({});
 
   const handleChange = (event) => {
+    console.log(formData)
     const name = event.target.name;
     const value = event.target.value;
-    console(name)
     setFormData((values) => ({ ...values, [name]: value }));
   };
 
@@ -16,9 +19,16 @@ const Createproject = () => {
     event.preventDefault();
     const data = {
       title: formData.title,
-      body: formData.description,
+      owner: formData.owner,
+      adviser: formData.adviser,
+      status: formData.status,
+      Facility: formData.Facility,
+      File_url: formData.File_url,
+      detail: formData.Detail,
 
     };
+    console.log(data)
+    create_project(data);
     console.log("in submit");
     /* post_POST(data).then(() => {
       getPost().then((resp) => {
@@ -36,7 +46,7 @@ const Createproject = () => {
     <div>
       <br />
       <Container>
-        <Form onSubmit={handleSubmit}>
+        {/* <Form onSubmit={handleSubmit}>
           <Row className="row">
             <Col className="column" md="3">
               <br />
@@ -82,11 +92,89 @@ const Createproject = () => {
             type="submit"
             variant="secondary"
             className="button d-md-flex justify-content-md-end"
-            /* onSubmit={handleSubmit} */
+            
           >
             Create Project
           </Button>
-        </Form>
+        </Form> */}
+        <form onSubmit={handleSubmit}>
+          <label>Event Name:
+            <input
+              type="text"
+              name="title"
+              value={formData.title || ""}
+              onChange={handleChange}
+            />
+          </label>
+
+          <br></br>
+
+          <label>Location:
+            <input
+              type="text"
+              name="status"
+              value={formData.status || ""}
+              onChange={handleChange}
+            />
+          </label>
+
+          <br></br>
+
+          <label>owner:
+            <input
+              type="text"
+              name="owner"
+              value={formData.owner || ""}
+              onChange={handleChange}
+            />
+          </label>
+          <br></br>
+
+          <label> adviser:
+            <input
+              type="text"
+              name="adviser"
+              value={formData.adviser || ""}
+              onChange={handleChange}
+            />
+
+          </label>
+
+          <br></br>
+
+          <label> facility:
+            <input
+              type="text"
+              name="Facility"
+              value={formData.Facility || ""}
+              onChange={handleChange}
+            />
+          </label>
+
+          <br></br>
+
+          <label> File_url:
+            <input
+              type="text"
+              name="File_url"
+              value={formData.File_url || ""}
+              onChange={handleChange}
+            />
+          </label>
+          
+          <br></br>
+
+          <label> Detail:
+            <input
+              type="text"
+              name="Detail"
+              value={formData.Detail || ""}
+              onChange={handleChange}
+            />
+          </label>
+
+          <input type="submit" />
+        </form>
 
       </Container>
     </div>
