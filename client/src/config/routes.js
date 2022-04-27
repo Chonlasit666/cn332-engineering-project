@@ -11,9 +11,10 @@ import {
   Project_URL,
   GoogleCalendar_URL,
   Profile_URL,
+  Documents_URL,
 } from "./urls";
 
-import { Login, Home, Createproject, Dashboard, Project, GoogleCalendar, Profile} from "../pages";
+import { Login, Home, Createproject, Dashboard, Project, GoogleCalendar, Profile, Documents} from "../pages";
 
 export const history = createBrowserHistory();
 
@@ -28,6 +29,7 @@ const Routes = () => {
         <Route path={GoogleCalendar_URL} component={GoogleCalendar} />
         <Route path={Createproject_URL} component={Createproject} />
         <Route path={Profile_URL} component={Profile} />
+        <Route path={Documents_URL} component={Documents} />
 
         <Route path="*">
           <Redirect to={HOME_URL} />

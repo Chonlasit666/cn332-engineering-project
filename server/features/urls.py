@@ -15,4 +15,5 @@ urlpatterns = [
     path('comments/', views.CommentList.as_view()),
     path('comments/<int:pk>/', views.CommentDetail.as_view()),
     path('create_post/', views.getFormDetailFrontend.as_view()),
+    path('create_project/', views.CreateProject.as_view()),
 ]
