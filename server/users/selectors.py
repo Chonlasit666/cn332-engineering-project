@@ -5,6 +5,7 @@ from users.models import User , Todo,Profile
 def user_get_me(user: User):
     profile = Profile.objects.get(email=user.email)
     return {
+        'pk': profile.pk,
         'id': user.email ,
         'first_name': profile.first_name, 
         'last_name': profile.last_name,
