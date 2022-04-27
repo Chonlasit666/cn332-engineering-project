@@ -23,20 +23,13 @@ import { MiniProfile, Schedule, UserContext } from "../../components";
 import { logout, todo, updatetodo } from "../../pages/Home/sdk";
 import styles from "./Home.module.css";
 import "../../App.css";
+import Dashboard from "../Dashboard";
 
 
 
 const getProject = () => getUser("users/testget/");
 const updateProfile = (sample) => postUser("users/updateProfile/", sample);
 
-const profileData = {
-  first_name: "adadad",
-  last_name: "last",
-  email: "temp@email.com",
-  /* avatar: '',
-  status: 'Student',
-  faculty: '', */
-};
 
 
 
@@ -44,56 +37,8 @@ const profileData = {
 const Home = () => {
   useUserRequired();
 
-  const [sample, setSample] = useState([])
-  console.log("sample bF")
-  useEffect(() => {
-    getProject().then((resp) => {
-      setSample(resp.data);
-      //console.log(resp.data);
-    });
-  }, []);
-  console.log("this is obj1" + sample.obj1);
-
-  /* ตรงนี้ตอนแก้แสดงผลproflie
-  var x = useTestRequired();
-  console.log("----------");
-  console.log(x);
-  */
-
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
-
-  //todo form
-  const [inputs, setInputs] = useState({});
-  const [check, setCheck] = useState(false);
-
-  const handleupdateTodo = useCallback(() => {
-    updatetodo();
-  }, [setUser, history]);
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    console.log(inputs.description);
-    setInputs((values) => ({ ...values, [name]: value }));
-    console.log("after change" + inputs.description);
-  };
-
-  const handleCheck = () => {
-    console.log(check);
-    setCheck(!check);
-  };
-
-  const handleTodo = (event) => {
-    event.preventDefault();
-    const data = {
-      title: inputs.title,
-      description: inputs.description,
-      completed: check,
-    };
-    console.log(inputs.description);
-    todo(data);
-  };
 
   const handleLogout = useCallback(() => {
     logout().then(() => {
@@ -102,10 +47,7 @@ const Home = () => {
     });
   }, [setUser, history]);
 
-  const handleupdateProfile = useCallback(() => {
-    console.log(profileData)
-    updateProfile(profileData)
-  }, []);
+  
 
   if (!user) {
     return (
@@ -119,24 +61,12 @@ const Home = () => {
     <Container className="py-4" style={{ backgroundColor: "#ECECEC" }}>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <h1> Hello! {user.first_name}</h1>
-        <button onClick={handleupdateTodo}>Test</button>
         <button
           class="btn btn-primary me-md-2"
           type="button"
           onClick={handleLogout}
         >
           LOGOUT
-        </button>
-        <button class="btn btn-primary" type="button" onClick={handleTodo}>
-          TEST!!
-        </button>
-        <button
-          class="btn btn-primary"
-          type="button"
-          onClick={handleupdateProfile}
-        >
-          {" "}
-          don't click this{" "}
         </button>
       </div>
 
@@ -240,51 +170,10 @@ const Home = () => {
         >
           <Col>
             <h6 className="text-center">Dashboard</h6>
+            {/* <Dashboard></Dashboard> */}
           </Col>
         </Col>
-      </Row>
-      <form onSubmit={handleTodo}>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={inputs.title || ""}
-            onChange={handleChange}
-          />
-        </label>
-
-        <br></br>
-
-        <label>
-          Description:
-          <input
-            type="text"
-            name="description"
-            value={inputs.description || ""}
-            onChange={handleChange}
-          />
-        </label>
-
-        <br></br>
-
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            value=""
-            id="flexCheckChecked"
-            onChange={handleCheck}
-          />
-          <label class="form-check-label" for="flexCheckChecked">
-            Checked checkbox
-          </label>
-        </div>
-
-        <br></br>
-
-        <input type="submit" />
-      </form>
+      </Row>    
     </Container>
   );
 };
