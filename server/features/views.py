@@ -16,7 +16,7 @@ from rest_framework.response import Response
 
 from .models import *
     
-class PostList(generics.ListCreateAPIView):
+class PostList(ApiAuthMixin,generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = serializer.PostSerializer
 
@@ -76,4 +76,44 @@ class CommentDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
         if(serializer.owner == self.request.user):
             serializer.delete()
 
+class CreateProject(generics.ListCreateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = serializer.ProjectSerializer
 
+    def perform_create(self, serializer):
+        serializer.save()
+
+class Progress(generics.ListCreateAPIView):
+    queryset = Progressions.objects.all()
+    serializer_class = serializer.ProgressSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+class ProgressUpdate(generics.RetrieveUpdateDestroyAPIView):  
+    queryset = Progressions.objects.all()
+    serializer_class = serializer.ProgressSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+    
+    def perform_delete(self, serializer):
+        if(serializer.owner == self.request.user):
+            serializer.delete()
+
+class ReviewList(generics.ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = serializer.ReviewSerializer
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+class ReviewUpdate(generics.RetrieveUpdateDestroyAPIView):  
+    queryset = Review.objects.all()
+    serializer_class = serializer.ReviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+    
+    def perform_delete(self, serializer):
+        if(serializer.owner == self.request.user):
+            serializer.delete()

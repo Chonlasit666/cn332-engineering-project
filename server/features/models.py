@@ -16,15 +16,26 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class Comment(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    body = models.TextField(blank=False)
+    owner = models.ForeignKey('users.User', related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['created']
 
 class Project(models.Model):
-    name = models.CharField(max_length=200)
-    owner = models.ManyToManyField(Profile, related_name='own')
-    adviser = models.ManyToManyField(Profile, related_name='advice')
+    title = models.CharField(max_length=200)
+    owner = models.ManyToManyField(Profile, related_name='own',blank=True)
+    adviser = models.ManyToManyField(Profile, related_name='advice',default='',blank=True)
     status = models.BooleanField(default=True)
+    Facility = models.CharField(max_length=200,blank=True,null=True)
+    File_url = models.CharField(max_length=200,blank=True,null=True)
+    Detail = models.TextField(blank=True,null=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Progressions(models.Model):
@@ -35,7 +46,7 @@ class Progressions(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
-        return self.project.name + self.title
+        return self.project.title + self.title
 
 
 class Review(models.Model):
@@ -52,14 +63,7 @@ class Review(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
-        return self.progress.project.name + " | " + self.progress.title + " | " + self.status
+        return self.progress.project.title + " | " + self.progress.title + " | " + self.status
 
 
-class Comment(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    body = models.TextField(blank=False)
-    owner = models.ForeignKey('users.User', related_name='comments', on_delete=models.CASCADE)
-    post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
 
-    class Meta:
-        ordering = ['created']
