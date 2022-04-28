@@ -16,4 +16,9 @@ urlpatterns = [
     path('comments/<int:pk>/', views.CommentDetail.as_view()),
     path('create_post/', views.getFormDetailFrontend.as_view()),
     path('create_project/', views.CreateProject.as_view()),
+    path('project/', views.CreateProject.as_view()),
+    path('progress/', views.Progress.as_view()),
+    path('progress/<int:pk>', views.ProgressUpdate.as_view()),
+    path('reviews/', views.ReviewList.as_view()),
+    path('reviews/<int:pk>', views.ReviewUpdate.as_view()),
 ]

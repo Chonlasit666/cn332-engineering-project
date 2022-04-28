@@ -76,10 +76,50 @@ class CommentDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
         if(serializer.owner == self.request.user):
             serializer.delete()
 
-class CreateProject(ApiAuthMixin,generics.ListCreateAPIView):  
+
+class CreateProject(ApiAuthMixin,generics.ListCreateAPIView):
+
     queryset = Project.objects.all()
     serializer_class = serializer.ProjectSerializer
 
     def perform_create(self, serializer):
         serializer.save()
+
     
+
+
+class Progress(ApiAuthMixin,generics.ListCreateAPIView):
+    queryset = Progressions.objects.all()
+    serializer_class = serializer.ProgressSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+class ProgressUpdate(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):  
+    queryset = Progressions.objects.all()
+    serializer_class = serializer.ProgressSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+    
+    def perform_delete(self, serializer):
+        if(serializer.owner == self.request.user):
+            serializer.delete()
+
+class ReviewList(ApiAuthMixin,generics.ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = serializer.ReviewSerializer
+    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+class ReviewUpdate(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):  
+    queryset = Review.objects.all()
+    serializer_class = serializer.ReviewSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+    
+    def perform_delete(self, serializer):
+        if(serializer.owner == self.request.user):
+            serializer.delete()
+
