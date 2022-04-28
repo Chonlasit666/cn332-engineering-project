@@ -15,6 +15,7 @@ import {
   Documents_URL,
 } from "./urls";
 import { useUserRequired } from '../../utils/hooks';
+import '../AppNav/App.css'
 
 const AppNav = () => {
   useUserRequired();
@@ -35,7 +36,7 @@ const AppNav = () => {
   console.log("user")
   console.log(user) */
 
-  return (<Navbar bg="light" expand="lg">
+  return (<Navbar expand="lg" >
     <Container className='justify-content-md-center'>
       <Navbar.Brand >
         <img
@@ -46,14 +47,25 @@ const AppNav = () => {
           alt="React Bootstrap logo"
         />
       </Navbar.Brand>
-      <Nav className="me-auto">
-        <Nav.Link href={HOME_URL}>Home</Nav.Link>
-        <Nav.Link href={Dashboard_URL}>Dashboard</Nav.Link>
-        <Nav.Link href={Documents_URL}>Project Documents</Nav.Link>
-        <Nav.Link href={GoogleCalendar_URL}>Calen</Nav.Link>
-        <Nav.Link href={Profile_URL}>Profile</Nav.Link>
-        <Nav.Link href={Project_URL}>Project</Nav.Link>
-        <Nav.Link href={Createproject_URL}>Create Project</Nav.Link>
+      <Nav className="text-center ">
+
+        <Nav.Link href={HOME_URL}><h5>Home
+        </h5></Nav.Link>
+
+
+        <Nav.Link href={Dashboard_URL}><h5>Dashboard
+        </h5></Nav.Link>
+
+
+        <Nav.Link href={Documents_URL}><h5>Project Documents
+        </h5></Nav.Link>
+
+        <Nav.Link href={GoogleCalendar_URL}><h5>Calendar
+        </h5></Nav.Link>
+        <Nav.Link href={Project_URL}><h5>Project
+        </h5></Nav.Link>
+        <Nav.Link href={Createproject_URL}><h5>Createproject
+        </h5></Nav.Link>
       </Nav>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll" className="justify-content-end">

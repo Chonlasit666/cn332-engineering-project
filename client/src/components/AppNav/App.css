@@ -1,0 +1,20 @@
+Nav {
+
+    background-color: #58595b;
+}
+
+Nav:hover {
+    background-color: #636466;
+    transition: 0.5s;
+}
+
+
+
+
+Nav h5 {
+    color: white;
+}
+
+Nav h5:hover {
+    color: #e5e5e5;
+}

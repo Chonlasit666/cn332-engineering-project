@@ -23,6 +23,7 @@ import "../../App.css";
 
 
 const getPost = () => getFeature("posts/");
+
 const post_POST = (data) => postFeature("create_post/", data);
 const getComment = () => getFeature("comments/<int:pk>/");
 
@@ -38,8 +39,10 @@ const Dashboard = () => {
     getPost().then((resp) => {
       setSamplePost(resp.data);
 
+
     });
   }, []);
+
 
   /* let i = 0;
   while ( i < samplePost.length) {
@@ -75,65 +78,78 @@ const Dashboard = () => {
 
 
   };
+  console.log("print")
+
+
+
 
 
 
   return (
-    <Container className='justify-content-md-center'>
-      <ListGroup as="ol" numbered>
-        {samplePost.map((post, index) => (
-          <Col>
-            <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-start justify-content-end"
-              key={index}
-            >
-              <div className="ms-2 me-auto">
-                <div className="fw-bold">{post.title}</div>
-                <label>{post.body}</label><br></br>
-                <label>{post.owner}</label><br></br>
-                <label>this is id {post.id}</label>
-                <label>this is comments {post.comments}</label>
+    <body style={{ backgroundColor: "#edf1f5", }}>
+      <Container className='justify-content-md-center' style={{ paddingTop: "20px", }}>
+        <ListGroup as="ol" numbered>
+          {samplePost.map((post, index) =>
+          (
+            <Col>
+              <ListGroup.Item
+                as="li"
+                className="d-flex justify-content-between align-items-start justify-content-end"
+                key={index}
+              >
+                <div className="ms-2 me-auto">
+                  <div className="fw-bold">{post.title}</div>
+                  <label>{post.body}</label><br></br>
+                  <label>{post.owner}</label><br></br>
+                  <label>this is id {post.id}</label>
+                  <label>this is comments {post.comments}</label>
+                  <div class="text-align-center">this is avatar{post.options.map((post_1, index) => (<Col>
+                    <img src={post_1.avatar} width="100px"></img>
 
-                
-                <Comment comments={post.comments} />
-              </div>
+                  </Col>))}</div>
+                  <Badge bg="primary" pill>
+                    no comment xDsssssssss
+                  </Badge>
+                  <Comment comments={post.comments} />
+                </div>
 
 
-            </ListGroup.Item>
 
-          </Col>
-        ))
-        }
-      </ListGroup>
 
-      <form onSubmit={handleCreatePost}>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={inputs.title || ""}
-            onChange={handleChange}
-          />
-        </label>
+              </ListGroup.Item>
 
-        <br></br>
+            </Col>
+          ))
+          }
+        </ListGroup>
 
-        <label>
-          Description:
-          <input
-            type="text"
-            name="description"
-            value={inputs.description || ""}
-            onChange={handleChange}
-          />
-        </label>
+        <form onSubmit={handleCreatePost}>
+          <label>
+            Title:
+            <input
+              type="text"
+              name="title"
+              value={inputs.title || ""}
+              onChange={handleChange}
+            />
+          </label>
 
-        <input type="submit" />
-      </form>
-    </Container>
+          <br></br>
 
+          <label>
+            Description:
+            <input
+              type="text"
+              name="description"
+              value={inputs.description || ""}
+              onChange={handleChange}
+            />
+          </label>
+
+          <input type="submit" />
+        </form>
+      </Container>
+    </body>
   );
 }
 
