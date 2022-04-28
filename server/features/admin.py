@@ -5,9 +5,14 @@ from .models import *
 class projectAdmin(admin.ModelAdmin):
     filter_horizontal = ('owner', 'adviser',)
 
-    
-admin.site.register(Post)
-admin.site.register(Comment)
-admin.site.register(Progressions)
-admin.site.register(Review)
+class showdateAdmin(admin.ModelAdmin):
+    readonly_fields = ('created',)
+class showtimeAdmin(admin.ModelAdmin):
+    readonly_fields = ('timestamp',)
+
+
+admin.site.register(Post,showdateAdmin)
+admin.site.register(Comment,showdateAdmin)
+admin.site.register(Progressions,showtimeAdmin)
+admin.site.register(Review,showtimeAdmin)
 admin.site.register(Project, projectAdmin)

@@ -5,7 +5,7 @@ from users.models import Profile
 
 
 class Post(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=timezone.now)
     title = models.CharField(max_length=100, blank=True, default='')
     body = models.TextField(blank=True, default='')
     owner = models.ForeignKey('users.User', related_name='posts', on_delete=models.CASCADE)
@@ -15,6 +15,17 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    body = models.TextField(blank=False)
+    owner = models.ForeignKey('users.User', related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['created']
+
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
@@ -26,7 +37,7 @@ class Project(models.Model):
     Detail = models.TextField(blank=True,null=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class Progressions(models.Model):
@@ -37,7 +48,7 @@ class Progressions(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
-        return self.project.name + self.title
+        return self.project.title + self.title
 
 
 class Review(models.Model):
@@ -54,14 +65,8 @@ class Review(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
-        return self.progress.project.name + " | " + self.progress.title + " | " + self.status
-      
+        return self.progress.project.title + " | " + self.progress.title + " | " + self.status
 
-class Comment(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    body = models.TextField(blank=False)
-    owner = models.ForeignKey('users.User', related_name='comments', on_delete=models.CASCADE)
-    post = models.ForeignKey('Post', related_name='comments', on_delete=models.CASCADE)
 
-    class Meta:
-        ordering = ['created']
+
+
