@@ -127,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bangkok'
 
 USE_I18N = True
 
@@ -162,7 +162,10 @@ JWT_AUTH = {
     'JWT_AUTH_COOKIE_SAMESITE': 'None'
 }
 
-
+#Rest Framework setting
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+}
 # CORS settings
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = env.list(
