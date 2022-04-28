@@ -17,6 +17,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = ['id', 'body', 'owner', 'post','created']
 
+
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
@@ -32,3 +33,4 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ['progress','owner', 'status' ,'comments','timestamp']
+

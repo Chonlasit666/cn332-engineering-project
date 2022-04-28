@@ -16,6 +16,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     body = models.TextField(blank=False)
@@ -24,6 +25,7 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['created']
+
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
@@ -64,6 +66,7 @@ class Review(models.Model):
     
     def __str__(self):
         return self.progress.project.title + " | " + self.progress.title + " | " + self.status
+
 
 
 

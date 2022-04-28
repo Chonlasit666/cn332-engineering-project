@@ -3,6 +3,7 @@ import Badge from "react-bootstrap/Badge";
 import React, { useContext, useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { getFeature, postFeature } from "../../utils/sdk";
+import { Comment } from "../../components";
 
 import {
   Navbar,
@@ -23,6 +24,7 @@ import "../../App.css";
 
 const getPost = () => getFeature("posts/");
 const post_POST = (data) => postFeature("create_post/", data);
+const getComment = () => getFeature("comments/<int:pk>/");
 
 const Dashboard = () => {
 
@@ -70,33 +72,43 @@ const Dashboard = () => {
 
       });
     });
-    
+
 
   };
+
+
 
   return (
     <Container className='justify-content-md-center'>
       <ListGroup as="ol" numbered>
         {samplePost.map((post, index) => (
+          <Col>
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between align-items-start justify-content-end"
+              key={index}
+            >
+              <div className="ms-2 me-auto">
+                <div className="fw-bold">{post.title}</div>
+                <label>{post.body}</label><br></br>
+                <label>{post.owner}</label><br></br>
+                <label>this is id {post.id}</label>
+                <label>this is comments {post.comments}</label>
 
-          <ListGroup.Item
-            as="li"
-            className="d-flex justify-content-between align-items-start"
-            key={index}
-          >
-            <div className="ms-2 me-auto">
-              <div className="fw-bold">{post.title}</div>
-              {post.body}
-            </div>
-            <Badge bg="primary" pill>
-              no comment xD
-            </Badge>
-          </ListGroup.Item>
-        )
+                <Badge bg="primary" pill>
+                  no comment xD
+                </Badge>
+                <Comment comments={post.comments} />
+              </div>
 
 
-        )}
+            </ListGroup.Item>
+
+          </Col>
+        ))
+        }
       </ListGroup>
+
       <form onSubmit={handleCreatePost}>
         <label>
           Title:

@@ -76,12 +76,17 @@ class CommentDetail(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
         if(serializer.owner == self.request.user):
             serializer.delete()
 
+
 class CreateProject(ApiAuthMixin,generics.ListCreateAPIView):
+
     queryset = Project.objects.all()
     serializer_class = serializer.ProjectSerializer
 
     def perform_create(self, serializer):
         serializer.save()
+
+    
+
 
 class Progress(ApiAuthMixin,generics.ListCreateAPIView):
     queryset = Progressions.objects.all()
@@ -117,3 +122,4 @@ class ReviewUpdate(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):
     def perform_delete(self, serializer):
         if(serializer.owner == self.request.user):
             serializer.delete()
+
