@@ -39,8 +39,6 @@ const Home = () => {
     });
   }, [setUser, history]);
 
-  
-
   if (!user) {
     return (
       <h1>Loading UWU...</h1>

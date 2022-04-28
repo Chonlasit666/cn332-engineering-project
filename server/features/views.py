@@ -85,14 +85,26 @@ class CreateProject(ApiAuthMixin,generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
 
-    
+
+
+class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Project.objects.all()
+    serializer_class = serializer.ProjectSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+
+    def perform_delete(self, serializer):
+        if(serializer.owner == self.request.user):
+            serializer.delete()
 
 
 class Progress(ApiAuthMixin,generics.ListCreateAPIView):
+    print("in prog")
     queryset = Progressions.objects.all()
     serializer_class = serializer.ProgressSerializer
 
     def perform_create(self, serializer):
+        print("create prog")
         serializer.save()
 
 class ProgressUpdate(ApiAuthMixin,generics.RetrieveUpdateDestroyAPIView):  

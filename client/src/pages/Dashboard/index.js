@@ -95,9 +95,7 @@ const Dashboard = () => {
                 <label>this is id {post.id}</label>
                 <label>this is comments {post.comments}</label>
 
-                <Badge bg="primary" pill>
-                  no comment xD
-                </Badge>
+                
                 <Comment comments={post.comments} />
               </div>
 

@@ -25,8 +25,6 @@ const Profile = () => {
     const [progress, setProgress] = useState(0);
     const [url, setUrl] = useState("");
 
-
-
     const history = useHistory();
     const { user, setUser } = useContext(UserContext);
 
@@ -70,7 +68,7 @@ const Profile = () => {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log("File available at", downloadURL);
-                    
+
                     const profileData = {
                         first_name: user.first_name,
                         last_name: user.last_name,
@@ -98,10 +96,6 @@ const Profile = () => {
 
 
     };
-
-
-
-
 
     return (
 

@@ -51,7 +51,8 @@ const AppNav = () => {
         <Nav.Link href={Dashboard_URL}>Dashboard</Nav.Link>
         <Nav.Link href={Documents_URL}>Project Documents</Nav.Link>
         <Nav.Link href={GoogleCalendar_URL}>Calen</Nav.Link>
-        <Nav.Link href={Profile_URL}>Project</Nav.Link>
+        <Nav.Link href={Profile_URL}>Profile</Nav.Link>
+        <Nav.Link href={Project_URL}>Project</Nav.Link>
         <Nav.Link href={Createproject_URL}>Create Project</Nav.Link>
       </Nav>
       <Navbar.Toggle aria-controls="navbarScroll" />

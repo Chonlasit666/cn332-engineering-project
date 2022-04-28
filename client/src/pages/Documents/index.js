@@ -41,8 +41,6 @@ const Documents = () => {
     console.log(samplePost)
   }, []);
 
-  
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
