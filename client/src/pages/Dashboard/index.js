@@ -1,9 +1,11 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import React, { useContext, useCallback, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link, useParams } from "react-router-dom";
 import { getFeature, postFeature } from "../../utils/sdk";
-import { Comment } from "../../components";
+import { Comment, UserContext } from "../../components";
+import { Containers } from '../../popup/Containers';
+import '../../popup/App.css';
 
 import {
   Navbar,
@@ -18,7 +20,9 @@ import {
 } from "react-bootstrap";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../../App.css";
+import "../Dashboard/App.css";
+import { Label } from "reactstrap";
+import { useUserRequired } from "../../utils/hooks";
 
 
 
@@ -28,130 +32,211 @@ const post_POST = (data) => postFeature("create_post/", data);
 const getComment = () => getFeature("comments/<int:pk>/");
 
 const Dashboard = () => {
+  useUserRequired();
 
   let history = useHistory();
 
   const [samplePost, setSamplePost] = useState([])
-  const [inputs, setInputs] = useState({});
+  const { user, setUser } = useContext(UserContext);
+  const [isStudent, setIsStudent] = useState(false);
+
+  const triggerText = 'Create Post';
+  const onSubmit = (event) => {
+    event.preventDefault(event);
+    console.log(event.target.title.value);
+    console.log(event.target.body.value);
+    console.log(event.target.tagsparent.value);
+
+  };
 
   useEffect(() => {
-    console.log("call useEff")
     getPost().then((resp) => {
       setSamplePost(resp.data);
 
-
     });
-  }, []);
+
+    if (user) {
+      //console.log("hello")
+      if (user.status == 'S') {
+        setIsStudent((prev) => (!prev))
+      }
+
+      //setIsStudent(prev => !prev)
+    }
 
 
-  /* let i = 0;
-  while ( i < samplePost.length) {
-    console.log("i  = " + i)
-    console.log( "this is post" + samplePost[i].title);
+  }, [])
+
+  console.log(isStudent)
+
+  function lower(obj) {
+    var i = 0;
+    for (var prop in obj) {
+      var test_first_name = (((obj[prop].options)[i]).first_name);
+      var test_last_name = (((obj[prop].options)[i]).last_name);
+
+      (((obj[prop].options)[i]).first_name) = test_first_name.charAt(0).toUpperCase() + test_first_name.slice(1).toLowerCase();
+      (((obj[prop].options)[i]).last_name) = test_last_name.charAt(0).toUpperCase() + test_last_name.slice(1).toLowerCase();
+
+    }
     i++;
-    
-  } */
-
-  const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    console.log(inputs.description);
-    setInputs((values) => ({ ...values, [name]: value }));
-    console.log("after change" + inputs.description);
-  };
+  }
 
 
-  const handleCreatePost = (event) => {
-    event.preventDefault();
-    const data = {
-      title: inputs.title,
-      body: inputs.description,
+  console.log(samplePost)
+  lower(samplePost);
 
-    };
-    console.log(data);
-    post_POST(data).then(() => {
-      getPost().then((resp) => {
-        setSamplePost(resp.data);
+  function testclick(event) {
+    console.log("you clicked")
+  }
 
-      });
-    });
-
-
-  };
-  console.log("print")
-
-
-
-
+  // const convertTextToLowerCase = () => {
+  //   // To convert Lower Case
+  //   let lowerCaseText = defaultText.toLowerCase();
+  //   setDefaultText(lowerCaseText);
+  // };
 
 
   return (
-    <body style={{ backgroundColor: "#edf1f5", }}>
-      <Container className='justify-content-md-center' style={{ paddingTop: "20px", }}>
-        <ListGroup as="ol" numbered>
-          {samplePost.map((post, index) =>
-          (
-            <Col>
-              <ListGroup.Item
-                as="li"
-                className="d-flex justify-content-between align-items-start justify-content-end"
-                key={index}
-              >
-                <div className="ms-2 me-auto">
-                  <div className="fw-bold">{post.title}</div>
-                  <label>{post.body}</label><br></br>
-                  <label>{post.owner}</label><br></br>
-                  <label>this is id {post.id}</label>
-                  <label>this is comments {post.comments}</label>
-                  <div class="text-align-center">this is avatar{post.options.map((post_1, index) => (<Col>
-                    <img src={post_1.avatar} width="100px"></img>
 
-                  </Col>))}</div>
-                  <Badge bg="primary" pill>
-                    no comment xDsssssssss
-                  </Badge>
-                  <Comment comments={post.comments} />
-                </div>
+    <body style={{ backgroundColor: "#edf1f5" }}>
 
+      <Container >
 
+        <Row>
+          <Col md="8">
+            <div className="home">
+              <div className="feed_warp">
+                {samplePost.map((post, index2) =>
+                (
+                  <div className="dashboard_bar">
+                    {
+                      post.options.map((post_1, index) => (
 
+                        <div className="activity-entry ">
 
-              </ListGroup.Item>
+                          <div className="wrap">
+                            <div className="list">
 
-            </Col>
-          ))
-          }
-        </ListGroup>
+                              <div className="dashboard_pic" style={{ backgroundImage: `url(${post_1.avatar})` }}
+                              />
+                              <div className="details">
+                                <Link className="name" to={`/ProfileView/${post_1.id}`}>
 
-        <form onSubmit={handleCreatePost}>
-          <label>
-            Title:
-            <input
-              type="text"
-              name="title"
-              value={inputs.title || ""}
-              onChange={handleChange}
-            />
-          </label>
+                                  <span className="first_name">
+                                    {post_1.first_name}
+                                  </span>
+                                  <span className="last_name">
+                                    {post_1.last_name}
 
-          <br></br>
+                                  </span>
+                                </Link>
+                                <Link to={`/PostView/${post.id}`}>
+                                  <div className="comment_title">
+                                    {post.title}
+                                  </div>
+                                </Link>
 
-          <label>
-            Description:
-            <input
-              type="text"
-              name="description"
-              value={inputs.description || ""}
-              onChange={handleChange}
-            />
-          </label>
+                                <div className="tags_body">
+                                  {post.tags.map((tag, index) => (
 
-          <input type="submit" />
-        </form>
-      </Container>
-    </body>
+                                    <Link key={`${tag}-index`} onClick={testclick()}
+                                      to={`/DashboardView/tags/${tag}`}>
+                                      <li className="d-inline tag-name"
+                                        value={tag}>
+                                        {tag}
+                                      </li>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                      )
+                    }
+                  </div>
+                )
+                )
+                }
+              </div>
+            </div>
+          </Col>
+          <Col>
+            <div className="button_form">
+              <Containers triggerText={triggerText} onSubmit={onSubmit} />
+            </div>
+          </Col>
+        </Row>
+
+      </Container >
+
+    </body >
   );
 }
+
+// const PostForm = () => {
+
+//   const [postForm, setPostForm] = useState({});
+
+//   const handleChange = (event) => {
+//     const name = event.target.name;
+//     const value = event.target.value;
+//     //console.log(inputs.description);
+//     setPostForm((values) => ({ ...values, [name]: value }));
+//     //console.log("after change" + inputs.description);
+//   };
+
+//   const handleCreatePost = (event) => {
+//     event.preventDefault();
+//     const data = {
+//       title: postForm.title,
+//       body: postForm.description,
+
+//     };
+//     console.log(data);
+//     post_POST(data).then(() => {
+//       getPost().then((resp) => {
+//         setPostForm(resp.data);
+
+//       });
+//       console.log("created")
+//       console.log(data)
+//     });
+
+
+//   };
+//   return (
+//     <>
+//       <form onSubmit={handleCreatePost}>
+//         <h1>Create post</h1>
+//         <Label>Title:
+
+//           <input
+//             type="text"
+//             name="title"
+//             value={postForm.title || ""}
+//             onChange={handleChange}
+//           />
+//         </Label>
+
+//         <Label>Description:
+
+//           <input
+//             type="text"
+//             name="body"
+//             value={postForm.body || ""}
+//             onChange={handleChange}
+//           />
+//         </Label>
+
+
+//         <input type="submit" />
+//       </form>
+//     </>
+//   )
+// }
 
 
 export default Dashboard;

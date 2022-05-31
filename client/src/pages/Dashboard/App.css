@@ -1,0 +1,94 @@
+.wrap {
+    background: rgb(var(--color-foreground));
+    border-radius: 10px;
+    font-size: 1.3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.activity-entry {
+    background-color: #ffffff;
+    border-radius: 10px;
+    min-width: 0;
+    margin-top: 20px;
+}
+
+.list {
+
+    display: grid;
+    grid-template-columns: 80px auto;
+    height: 100%;
+    max-height: 110px;
+}
+
+.feed_wrap {
+    min-width: 0;
+    overflow: visible;
+}
+
+.home {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.dashboard_bar {
+    margin-bottom: 20px;
+    border-radius: 50px;
+}
+
+
+
+.list .details {
+    padding: 5px 14px;
+    padding-right: 100px;
+
+}
+
+.list .name {
+
+    margin-bottom: 1px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: .15s;
+    outline: 0;
+}
+
+
+.comment_body {
+
+    font-size: 0.8rem;
+}
+
+.name {
+
+    color: rgb(24, 174, 188);
+    display: inline-block;
+    font-size: 1.4rem;
+
+}
+
+
+
+.last_name {
+    margin-left: 10px;
+
+}
+
+.dashboard_pic {
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 110px;
+
+}
+
+.tag-name {
+    margin-left: 10px;
+    color: rgb(217, 0, 0);
+    background-color: rgb(229, 219, 185);
+    border-radius: 3px;
+}

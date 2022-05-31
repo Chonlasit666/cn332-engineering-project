@@ -28,13 +28,6 @@ import Dashboard from "../Dashboard";
 import { height, textAlign } from "@mui/system";
 
 
-
-
-
-
-
-
-
 const Home = () => {
   useUserRequired();
 
@@ -53,7 +46,7 @@ const Home = () => {
   if (!user) {
     return (
       <Container className="py-4" style={{ backgroundColor: "#ECECEC", textAlign: "center" }}>
-        <h1>Loading UWU...</h1>
+        <h1>Loading...</h1>
         <img src={"https://usercontent.2th.me/a/i/i0isok5c/2th.me_1261966.jpg"} a00lt="Logo" class="rotate" />
       </Container>
 
@@ -61,21 +54,13 @@ const Home = () => {
     );
   }
 
-  //console.log(user);
+  
+  
+  
 
   return (
     <Container className="py-4" style={{ backgroundColor: "#edf1f5", }}>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <h1> Hello! {user.first_name}</h1>
-        <button
-          class="btn btn-primary me-md-2"
-          type="button"
-          onClick={handleLogout}
-        >
-          LOGOUT
-        </button>
-      </div>
-
+      
       <Row >
         <Col className="col-12 d-inline-block " md="8">
           <Row>
@@ -152,7 +137,7 @@ const Home = () => {
                 style={{ backgroundColor: "#FFFFFF" }}
               >
                 <h5>Update Project</h5>
-                {/* Update Project */}
+                Update Project
                 <h6>
                   Project here Project here Project here Project here Project
                   here Project here Project here Project here Project here

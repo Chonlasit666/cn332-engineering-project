@@ -1,0 +1,16 @@
+AUTHORS.rst
+CONTRIBUTING.rst
+HISTORY.rst
+LICENSE
+MANIFEST.in
+README.md
+setup.cfg
+setup.py
+django_taggit_serializer.egg-info/PKG-INFO
+django_taggit_serializer.egg-info/SOURCES.txt
+django_taggit_serializer.egg-info/dependency_links.txt
+django_taggit_serializer.egg-info/not-zip-safe
+django_taggit_serializer.egg-info/requires.txt
+django_taggit_serializer.egg-info/top_level.txt
+taggit_serializer/__init__.py
+taggit_serializer/serializers.py

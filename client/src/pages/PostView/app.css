@@ -1,0 +1,49 @@
+.post_avatar {
+    background-position: center center;
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+
+    margin-top: 15px;
+    border-radius: 20px;
+
+}
+
+.main_post {
+    height: 600px;
+
+}
+
+.main_post_name {
+    width: 250px;
+    height: 250px;
+    text-align: center;
+
+}
+
+.post_name {
+    margin-left: 20px;
+}
+
+.post_owner {}
+
+.title_name {
+    font-size: 30px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.create_comment {
+    text-align: center;
+}
+
+.create_name {
+    margin-top: 20px;
+    text-align: right;
+
+}
+
+.comment_create {
+    float: right;
+}

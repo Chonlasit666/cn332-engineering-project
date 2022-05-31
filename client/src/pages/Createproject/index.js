@@ -1,13 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { postFeature } from "../../utils/sdk";
+import { getFeature, postFeature } from "../../utils/sdk";
 import { getUser } from "../../utils/sdk";
+import { useUserRequired } from "../../utils/hooks";
+import { UserContext } from "../../components";
+
 
 const create_project = (data) => postFeature('create_project/', data)
 const get_profile = () => getUser('users/me/');
+const get_professor = () => getFeature('professor/');
+const get_student = () => getFeature('student/');
+
 
 const Createproject = () => {
+  useUserRequired();
 
+  const { user, setUser } = useContext(UserContext);
+
+  //var professer = ["", 1, 2, 3, 4, 5]
+
+  const [professor, setProfessor] = useState([])
+  const [student, setStudent] = useState([])
   const [formData, setFormData] = useState({});
   const [prof, setProf] = useState([]);
 
@@ -18,7 +31,18 @@ const Createproject = () => {
       setProf(resp.data);
 
     });
+    get_professor().then((resp) => {
+      setProfessor(resp.data);
+
+    });
+    get_student().then((resp) => {
+      setStudent(resp.data);
+
+    });
+
   }, []);
+
+  console.log(student)
 
   const handleChange = (event) => {
     console.log(formData)
@@ -28,20 +52,26 @@ const Createproject = () => {
   };
 
   const handleSubmit = (event) => {
+    console.log("formDARTA")
+    console.log(formData.adviser)
+
     event.preventDefault();
     const data = {
       title: formData.title,
-      owner: [prof.pk],
+      owner: formData.owner,
       adviser: [formData.adviser],
       status: formData.status,
       Facility: formData.Facility,
       File_url: formData.File_url,
       detail: formData.Detail,
+      progress: [],
 
     };
+
     console.log(data)
     create_project(data);
     console.log("in submit");
+
     /* post_POST(data).then(() => {
       getPost().then((resp) => {
         setSamplePost(resp.data);
@@ -55,142 +85,105 @@ const Createproject = () => {
     console.log("inshow")
   }
   return (
-    <div>
-      <br />
-      <Container>
-        {prof.pk}
-        {/* <Form onSubmit={handleSubmit}>
-          <Row className="row">
-            <Col className="column" md="3">
-              <br />
-              <Button variant="warning" className="button">
-                Upload Profile
-              </Button>
-            </Col>
-            <Col className="column">
-              {formData.title}
-              <Form.Control type="text" name="title" value={formData.title} onChange={handleChange} />
-              <Form.Control type="text" placeholder="Markdown (tag)" />
-              <br />
-              <Form.Group controlId="formFileMultiple" className="mb-3">
-                <Form.Control type="file" multiple />
-              </Form.Group>
 
-              <Form.Select>
-                <option>Status</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
-            </Col>
-          </Row>
-          <Row className="row">
-            <Col className="column" md="6">
-              Requirment Context
-              <br />
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control as="textarea" rows={3} />
-              </Form.Group>
-            </Col>
 
-            <Col className="column">
-              Detail
-              <br />
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control as="textarea" rows={3} />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Button
-            type="submit"
-            variant="secondary"
-            className="button d-md-flex justify-content-md-end"
-            
-          >
-            Create Project
-          </Button>
-        </Form> */}
-        <form onSubmit={handleSubmit}>
-          <label>title:
-            <input
-              type="text"
-              name="title"
-              value={formData.title || ""}
-              onChange={handleChange}
-            />
-          </label>
+    <Container className='justify-content-md-center'>
+      {/* requirement
+        ที่กรอกฟอร์มสำหรับ adviser ต้องเป็น option
+        โดยที่เราจะดึง profile ของอาจารย์ทั้งหมดออกมา
+      */}
+      <h1>create project</h1>
 
-          <br></br>
+      <form onSubmit={handleSubmit}>
+        <label>title:
+          <input
+            type="text"
+            name="title"
+            value={formData.title || ""}
+            onChange={handleChange}
+          />
+        </label>
 
-          <label>status:
-            <input
-              type="text"
-              name="status"
-              value={formData.status || ""}
-              onChange={handleChange}
-            />
-          </label>
+        <br></br>
 
-          <br></br>
+        <label>status:
+          <input
+            type="text"
+            name="status"
+            value={formData.status || ""}
+            onChange={handleChange}
+          />
+        </label>
 
-          <label>owner:
-            <input
-              type="text"
-              name="owner"
-              value={formData.owner || ""}
-              onChange={handleChange}
-            />
-          </label>
-          <br></br>
+        <br></br>
 
-          <label> adviser:
-            <input
-              type="text"
-              name="adviser"
-              value={formData.adviser || ""}
-              onChange={handleChange}
-            />
+        <label>
+          adviser:
+          <select name="adviser" value={formData.value} onChange={handleChange}>
+            {professor.map((p, index) => {
+              return (
+                <>
+                  <option value={p.id} >{p.first_name} {p.last_name}</option>
+                </>
+              )
+            })}
+          </select>
+        </label>
+        <br></br>
 
-          </label>
+        <label>
+          owner:
+          <select name="owner" value={formData.value} onChange={handleChange}>
+            {student.map((p, index) => {
+              return (
+                <>
+                  <option value={p.id} >{p.first_name} {p.last_name}</option>
+                </>
+              )
+            })}
+          </select>
+        </label>
 
-          <br></br>
+        <br></br>
 
-          <label> facility:
-            <input
-              type="text"
-              name="Facility"
-              value={formData.Facility || ""}
-              onChange={handleChange}
-            />
-          </label>
+        <label> facility:
+          <input
+            type="text"
+            name="Facility"
+            value={formData.Facility || ""}
+            onChange={handleChange}
+          />
+        </label>
 
-          <br></br>
+        <br></br>
 
-          <label> File_url:
-            <input
-              type="text"
-              name="File_url"
-              value={formData.File_url || ""}
-              onChange={handleChange}
-            />
-          </label>
-          
-          <br></br>
+        <label> File_url:
+          <input
+            type="text"
+            name="File_url"
+            value={formData.File_url || ""}
+            onChange={handleChange}
+          />
+        </label>
 
-          <label> Detail:
-            <input
-              type="text"
-              name="Detail"
-              value={formData.Detail || ""}
-              onChange={handleChange}
-            />
-          </label>
+        <br></br>
 
-          <input type="submit" />
-        </form>
+        <label> Detail:
+          <input
+            type="text"
+            name="Detail"
+            value={formData.Detail || ""}
+            onChange={handleChange}
+          />
+        </label>
 
-      </Container>
-    </div>
+
+
+        <input type="submit" />
+      </form>
+
+    </Container>
+
   );
 }
 

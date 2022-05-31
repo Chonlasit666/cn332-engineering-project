@@ -41,10 +41,22 @@ export const getFeature = (url, options) =>
     .then(serializeResponse)
     .then(handle401);
 
+export const getPostView = (url, options) =>
+  fetch(`${BASE_FEATURE_URL}/${url}`, { ...getBaseConfig("get"), ...options })
+    .then(serializeResponse)
+    .then(handle401);
+
+
+
 // export const get = (url, options) =>
 // fetch(`${BASE_API_URL}/${url}`, { ...getBaseConfig("get"), ...options })
 // .then(serializeResponse)
 // .then(handle401);
+
+export const getProfileView = (url, options) =>
+  fetch(`${BASE_USER_URL}/${url}`, { ...getBaseConfig("get"), ...options })
+    .then(serializeResponse)
+    .then(handle401);
 
 export const postUser = (url, data, options) =>
   fetch(`${BASE_USER_URL}/${url}`, {
