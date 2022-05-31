@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'rest_framework_jwt',
     'rest_framework_jwt.blacklist',
 
-    'users.apps.UsersConfig',
+    'users.apps.UsersConfig', 'taggit', 'taggit_serializer',
 ]
 
 MIDDLEWARE = [
@@ -162,7 +162,7 @@ JWT_AUTH = {
     'JWT_AUTH_COOKIE_SAMESITE': 'None'
 }
 
-#Rest Framework setting
+# Rest Framework setting
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
 }

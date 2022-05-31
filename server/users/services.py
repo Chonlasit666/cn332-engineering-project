@@ -87,24 +87,24 @@ def update_todos(id: int, title: str,  description: str, completed: bool):
 @transaction.atomic
 def update_profile(first_name: str, last_name: str, email: str, avatar: str,):
     
-    print("in update")
-    print(first_name)
-    print(last_name)
-    print(email)
-    print(avatar)
+    #print("in update")
+    #print(first_name)
+    #print(last_name)
+    #print(email)
+    #print(avatar)
     user = User.objects.filter(email=email)
-    print("this is user"+ user)
+    #print("this is user"+ user)
     profile = Profile.objects.get(email=user.email)
-    print("this is profile" + profile)
+    #print("this is profile" + profile)
     profile.first_name = first_name
     profile.last_name = last_name
     profile.email = email
-    print("old avater" + profile.avatar)
+    #print("old avater" + profile.avatar)
     profile.avatar = avatar
-    print("new avater" + profile.avatar)
+    #print("new avater" + profile.avatar)
     """ profile.faculty = faculty """
 
     profile.save()
 
-    print("edit profile success")
+    #print("edit profile success")
     return profile

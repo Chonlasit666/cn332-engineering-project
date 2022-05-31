@@ -47,7 +47,7 @@ const Dashboard = () => {
     return (
 
         <Row>
-            {samplePost_reversed.slice(0, 2).map((post, index) => (
+            {samplePost_reversed.slice(0, 3).map((post, index) => (
                 <Col>
                     <ListGroup.Item
                         as="li"
@@ -59,13 +59,9 @@ const Dashboard = () => {
                             <label>{post.body}</label><br></br>
                             <label>{post.owner}</label><br></br>
                             <label>this is id {post.id}</label>
-                            <label>this is comments {post.comments}</label>
 
-                            <Badge bg="primary" pill>
-                                no commentsssssssss xD
-                            </Badge>
 
-                            <Comment comments={post.comments} />
+
                         </div>
 
 

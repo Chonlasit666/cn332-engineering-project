@@ -1,5 +1,5 @@
 import email
-from rest_framework import serializers , generics
+from rest_framework import serializers, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -8,18 +8,22 @@ from api.mixins import ApiErrorsMixin, ApiAuthMixin, PublicApiMixin
 
 from auth.services import jwt_login, google_validate_id_token
 
+
 from users.services import update_profile, user_get_or_create, post_todos, update_todos
 from users.selectors import *
-from users.models import Profile , Todo
+from users.models import Profile, Todo, User
 from users.serializer import *
+
 
 class UserMeApi(ApiAuthMixin, ApiErrorsMixin, APIView):
     def get(self, request, *args, **kwargs):
         return Response(user_get_me(user=request.user))
-   
+
+
 class testGet(ApiAuthMixin, ApiErrorsMixin, APIView):
     def get(self, request, *args, **kwargs):
         return Response(test_get())
+
 
 class testPOST(ApiAuthMixin, ApiErrorsMixin, APIView):
     class InputSerializer(serializers.Serializer):
@@ -81,6 +85,19 @@ class UserInitApi(PublicApiMixin, ApiErrorsMixin, APIView):
         return response
 
 
+class getProfileView(ApiAuthMixin, ApiErrorsMixin, APIView):
+
+    def get(self, request, *args, **kwargs):
+
+        id = kwargs.get("id", None)
+
+        if id != None:
+            car = Profile.objects.get(id=id)
+            serializer = ProflieSerializer(car)
+
+        return Response(serializer.data)
+
+
 class testPUT(ApiAuthMixin, ApiErrorsMixin, APIView):
 
     def get_queryset(self):
@@ -88,7 +105,7 @@ class testPUT(ApiAuthMixin, ApiErrorsMixin, APIView):
         return cars
 
     def get(self, request, *args, **kwargs):
-        
+
         try:
             id = request.query_params["id"]
             if id != None:
@@ -101,18 +118,18 @@ class testPUT(ApiAuthMixin, ApiErrorsMixin, APIView):
         return Response(serializer.data)
 
     def put(self, request, *args, **kwargs):
-        #id = request.query_params["id"]
+        # id = request.query_params["id"]
         profile = Profile.objects.get(email=request.user.email)
         print(profile)
-        
+
         data = request.data
 
         profile.first_name = data["first_name"]
         profile.last_name = data["last_name"]
         profile.status = data["status"]
-        profile.avatar= data["avatar"]
+        profile.avatar = data["avatar"]
         profile.faculty = data["faculty"]
-        
+
         profile.save()
 
         serializer = ProflieSerializer(profile)

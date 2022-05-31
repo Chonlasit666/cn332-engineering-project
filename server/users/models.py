@@ -35,7 +35,7 @@ class Profile(models.Model):
     # avatar = models.ImageField(upload_to='profile', blank = True) this
     avatar = models.CharField(max_length=200, null=True, blank=True, default=DEAFAULTPIC)
     status = models.CharField(
-        max_length=9, choices=status_choices)  # Student / Professor
+        max_length=9, choices=status_choices, default=('S', 'Student'))  # Student / Professor
     faculty = models.CharField(max_length=200, blank=True, null=False)
 
     def __str__(self):
